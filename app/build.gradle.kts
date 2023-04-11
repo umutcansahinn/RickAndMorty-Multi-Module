@@ -1,6 +1,7 @@
 plugins {
     id(BuildPlugins.androidApplication)
     id(BuildPlugins.kotlinJetBrains)
+    id(BuildPlugins.safeArgs)
 }
 
 android {
@@ -30,6 +31,12 @@ android {
     kotlinOptions {
         jvmTarget = ConfigData.jvmTarget
     }
+
+    sourceSets {
+        getByName("debug").res.srcDirs(
+            "$rootDir/navigation/src/main/sharedRes"
+        )
+    }
 }
 
 dependencies {
@@ -41,4 +48,8 @@ dependencies {
     testImplementation(AndroidLibraries.junit)
     androidTestImplementation(AndroidLibraries.extJunit)
     androidTestImplementation(AndroidLibraries.espressoCore)
+
+    implementation(AndroidLibraries.navigationFragment)
+    implementation(AndroidLibraries.navigationUi)
+
 }

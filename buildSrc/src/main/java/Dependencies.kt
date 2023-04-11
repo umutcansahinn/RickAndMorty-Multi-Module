@@ -12,6 +12,7 @@ object BuildPlugins {
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
     const val kotlinJetBrains = "org.jetbrains.kotlin.android"
+    const val safeArgs = "androidx.navigation.safeargs.kotlin"
 }
 
 
@@ -31,6 +32,7 @@ object Versions {
     val junit = "4.13.2"
     val extJunit = "1.1.5"
     val espressoCore = "3.5.1"
+    val navVersion = "2.5.3"
 }
 
 object AndroidLibraries {
@@ -50,4 +52,9 @@ object AndroidLibraries {
     val junit = "junit:junit:${Versions.junit}"
     val extJunit = "androidx.test.ext:junit:${Versions.extJunit}"
     val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
+
+    //navigation
+    val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navVersion}"
+    val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navVersion}"
+    val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navVersion}"
 }

@@ -16,12 +16,9 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
@@ -41,4 +38,7 @@ dependencies {
     testImplementation(AndroidLibraries.junit)
     androidTestImplementation(AndroidLibraries.extJunit)
     androidTestImplementation(AndroidLibraries.espressoCore)
+
+    implementation(AndroidLibraries.navigationFragment)
+    implementation(AndroidLibraries.navigationUi)
 }
