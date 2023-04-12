@@ -11,7 +11,9 @@ import com.umutcansahin.feature.R
 import com.umutcansahin.feature.character.CharacterFragmentDirections
 import com.umutcansahin.feature.databinding.FragmentCharacterBinding
 import com.umutcansahin.feature.databinding.FragmentLocationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LocationFragment: Fragment(R.layout.fragment_location) {
     private val binding by viewBinding(FragmentLocationBinding::bind)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

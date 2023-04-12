@@ -1,6 +1,10 @@
+import BuildPlugins.kapt
+
 plugins {
     id(BuildPlugins.androidLibrary)
     id(BuildPlugins.kotlinJetBrains)
+    id(BuildPlugins.daggerHilt)
+    kotlin(BuildPlugins.kapt)
 }
 
 android {
@@ -41,4 +45,7 @@ dependencies {
     testImplementation(AndroidLibraries.junit)
     androidTestImplementation(AndroidLibraries.extJunit)
     androidTestImplementation(AndroidLibraries.espressoCore)
+
+    implementation(AndroidLibraries.daggerHilt)
+    kapt(AndroidLibraries.daggerHiltCom)
 }

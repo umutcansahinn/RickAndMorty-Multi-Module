@@ -1,6 +1,10 @@
+import BuildPlugins.kapt
+
 plugins {
     id(BuildPlugins.androidLibrary)
     id(BuildPlugins.kotlinJetBrains)
+    id(BuildPlugins.daggerHilt)
+    kotlin(BuildPlugins.kapt)
 }
 
 android {
@@ -50,4 +54,7 @@ dependencies {
 
     implementation(AndroidLibraries.navigationFragment)
     implementation(AndroidLibraries.navigationUi)
+
+    implementation(AndroidLibraries.daggerHilt)
+    kapt(AndroidLibraries.daggerHiltCom)
 }

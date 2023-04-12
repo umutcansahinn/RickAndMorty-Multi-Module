@@ -22,6 +22,8 @@ object BuildPlugins {
     const val androidLibrary = "com.android.library"
     const val kotlinJetBrains = "org.jetbrains.kotlin.android"
     const val safeArgs = "androidx.navigation.safeargs.kotlin"
+    const val daggerHilt = "com.google.dagger.hilt.android"
+    const val kapt = "kapt"
 }
 
 
@@ -31,6 +33,7 @@ object Versions {
     val androidApplication = "7.4.1"
     val androidLibrary = "7.4.1"
     val kotlinJetBrains = "1.8.0"
+    val hilt = "2.44"
 
     //Android Libraries
     val core = "1.7.0"
@@ -66,4 +69,8 @@ object AndroidLibraries {
     val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navVersion}"
     val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navVersion}"
     val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navVersion}"
+
+    //hilt
+    val daggerHilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    val daggerHiltCom = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
 }

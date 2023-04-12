@@ -9,7 +9,9 @@ import androidx.navigation.fragment.findNavController
 import com.umutcansahin.common.viewBinding
 import com.umutcansahin.feature.R
 import com.umutcansahin.feature.databinding.FragmentCharacterBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CharacterFragment : Fragment(R.layout.fragment_character) {
    private val binding by viewBinding(FragmentCharacterBinding::bind)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

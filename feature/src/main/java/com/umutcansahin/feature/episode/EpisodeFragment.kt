@@ -11,7 +11,9 @@ import com.umutcansahin.feature.R
 import com.umutcansahin.feature.character.CharacterFragmentDirections
 import com.umutcansahin.feature.databinding.FragmentCharacterBinding
 import com.umutcansahin.feature.databinding.FragmentEpisodeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EpisodeFragment: Fragment(R.layout.fragment_episode) {
     private val binding by viewBinding(FragmentEpisodeBinding::bind)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
