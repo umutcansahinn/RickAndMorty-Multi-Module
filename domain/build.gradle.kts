@@ -32,6 +32,8 @@ android {
 
 dependencies {
 
+    implementation(project(Modules.common))
+
     implementation(AndroidLibraries.androidxCore)
     implementation(AndroidLibraries.androidxAppCompat)
     implementation(AndroidLibraries.material)

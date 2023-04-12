@@ -37,9 +37,15 @@ android {
             "$rootDir/navigation/src/main/sharedRes"
         )
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+
+    implementation(project(Modules.feature))
+    implementation(project(Modules.common))
 
     implementation(AndroidLibraries.androidxCore)
     implementation(AndroidLibraries.androidxAppCompat)

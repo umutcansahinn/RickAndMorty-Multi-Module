@@ -8,6 +8,15 @@ object ConfigData {
 
 }
 
+object Modules {
+    const val app = ":app"
+    const val common = ":common"
+    const val data = ":data"
+    const val domain = ":domain"
+    const val feature = ":feature"
+    const val navigation = ":navigation"
+}
+
 object BuildPlugins {
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"

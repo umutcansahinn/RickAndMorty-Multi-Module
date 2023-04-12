@@ -1,6 +1,7 @@
 plugins {
     id(BuildPlugins.androidLibrary)
     id(BuildPlugins.kotlinJetBrains)
+    id(BuildPlugins.safeArgs)
 }
 
 android {

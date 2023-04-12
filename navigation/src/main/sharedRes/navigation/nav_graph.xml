@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/characterFragment">
+
+    <fragment
+        android:id="@+id/characterFragment"
+        android:name="com.umutcansahin.feature.character.CharacterFragment"
+        android:label="characterFragment">
+        <action
+            android:id="@+id/action_characterFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodeFragment"
+        android:name="com.umutcansahin.feature.episode.EpisodeFragment"
+        android:label="Episode">
+        <action
+            android:id="@+id/action_episodeFragment_to_episodeDetailFragment"
+            app:destination="@id/episodeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetailFragment"
+        android:name="com.umutcansahin.feature.character_detail.CharacterDetailFragment"
+        android:label="CharacterDetailFragment" >
+        <argument
+            android:name="characterId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodeDetailFragment"
+        android:name="com.umutcansahin.feature.episode_detail.EpisodeDetailFragment"
+        android:label="EpisodeDetailFragment" >
+        <argument
+            android:name="episodeId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.umutcansahin.feature.location.LocationFragment"
+        android:label="Location">
+        <action
+            android:id="@+id/action_locationFragment_to_locationDetailFragment"
+            app:destination="@id/locationDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationDetailFragment"
+        android:name="com.umutcansahin.feature.location_detail.LocationDetailFragment"
+        android:label="LocationDetailFragment" >
+        <argument
+            android:name="locationId"
+            app:argType="integer" />
+    </fragment>
+</navigation>
