@@ -48,4 +48,11 @@ dependencies {
 
     implementation(AndroidLibraries.daggerHilt)
     kapt(AndroidLibraries.daggerHiltCom)
+    implementation(AndroidLibraries.retrofit)
+    implementation(AndroidLibraries.retrofitConverter)
+    implementation(AndroidLibraries.retrofitCoroutines)
+    implementation(AndroidLibraries.gson)
+    implementation(AndroidLibraries.okhttp)
+    implementation(AndroidLibraries.okhttpInterceptor)
+    implementation(AndroidLibraries.paging)
 }

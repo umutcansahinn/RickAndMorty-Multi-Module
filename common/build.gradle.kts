@@ -28,7 +28,6 @@ android {
     kotlinOptions {
         jvmTarget = ConfigData.jvmTarget
     }
-
     buildFeatures {
         viewBinding = true
     }
@@ -42,4 +41,7 @@ dependencies {
     testImplementation(AndroidLibraries.junit)
     androidTestImplementation(AndroidLibraries.extJunit)
     androidTestImplementation(AndroidLibraries.espressoCore)
+
+    implementation(AndroidLibraries.glide)
+    annotationProcessor(AndroidLibraries.glideComp)
 }
