@@ -4,8 +4,8 @@ package com.umutcansahin.data.response.character
 import com.google.gson.annotations.SerializedName
 
 data class CharacterResponse(
-    @SerializedName("info")
-    val info: Info?,
+    @SerializedName("locationInfo")
+    val info: CharacterInfo?,
     @SerializedName("results")
-    val results: List<CharacterResult?>?
+    val result: List<CharacterResult>?
 )

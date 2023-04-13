@@ -15,11 +15,11 @@ data class CharacterResult(
     @SerializedName("image")
     val image: String?,
     @SerializedName("location")
-    val location: Location?,
+    val location: CharacterLocation?,
     @SerializedName("name")
     val name: String?,
     @SerializedName("origin")
-    val origin: Origin?,
+    val origin: CharacterOrigin?,
     @SerializedName("species")
     val species: String?,
     @SerializedName("status")

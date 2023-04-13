@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class LocationResponse(
     @SerializedName("info")
-    val info: Info?,
+    val info: LocationInfo?,
     @SerializedName("result")
     val result: List<LocationResult>?
 )

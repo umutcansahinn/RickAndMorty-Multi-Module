@@ -3,7 +3,7 @@ package com.umutcansahin.data.response.character
 
 import com.google.gson.annotations.SerializedName
 
-data class Location(
+data class CharacterOrigin(
     @SerializedName("name")
     val name: String?,
     @SerializedName("url")

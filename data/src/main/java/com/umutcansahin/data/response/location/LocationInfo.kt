@@ -1,9 +1,9 @@
-package com.umutcansahin.data.response.character
+package com.umutcansahin.data.response.location
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Info(
+data class LocationInfo(
     @SerializedName("count")
     val count: Int?,
     @SerializedName("next")
