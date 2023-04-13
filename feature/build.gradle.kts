@@ -57,4 +57,5 @@ dependencies {
 
     implementation(AndroidLibraries.daggerHilt)
     kapt(AndroidLibraries.daggerHiltCom)
+    implementation(AndroidLibraries.paging)
 }
