@@ -1,18 +1,18 @@
 package com.umutcansahin.domain.model
 
 data class EpisodeDomainModel(
-    val info: EpisodeInfo,
-    val result: List<EpisodeResult>
+    val info: EpisodeInfoDM,
+    val result: List<EpisodeResultDM>
 )
 
-data class EpisodeInfo(
+data class EpisodeInfoDM(
     val count: Int,
     val next: String,
     val pages: Int,
     val prev: Any
 )
 
-data class EpisodeResult(
+data class EpisodeResultDM(
     val airDate: String,
     val characters: List<String>,
     val created: String,

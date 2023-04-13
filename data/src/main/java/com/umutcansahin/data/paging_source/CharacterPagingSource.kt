@@ -21,7 +21,7 @@ class CharacterPagingSource(
         return try {
             val response = rickAndMortyApi.getAllCharacter(page = page)
 
-            val nextKey = if(response.info?.pages == null) {
+            val nextKey = if(response.info.pages == null) {
                 null
             } else if (page < response.info.pages) {
                 page +1

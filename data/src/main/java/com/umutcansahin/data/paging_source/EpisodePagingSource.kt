@@ -21,7 +21,7 @@ class EpisodePagingSource(
         return try {
             val response = rickAndMortyApi.getAllEpisode(page = page)
 
-            val nextKey = if(response.info?.pages == null) {
+            val nextKey = if(response.info.pages == null) {
                 null
             } else if (page < response.info.pages) {
                 page +1
