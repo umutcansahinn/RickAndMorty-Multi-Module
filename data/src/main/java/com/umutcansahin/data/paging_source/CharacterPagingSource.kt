@@ -10,9 +10,9 @@ class CharacterPagingSource(
 ): PagingSource<Int,CharacterResult>() {
 
     override fun getRefreshKey(state: PagingState<Int, CharacterResult>): Int? {
-        return state.anchorPosition?.let {
-            state.closestPageToPosition(it)?.prevKey?.plus(1)
-                ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
+        return state.anchorPosition?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
 
@@ -21,13 +21,14 @@ class CharacterPagingSource(
         return try {
             val response = rickAndMortyApi.getAllCharacter(page = page)
 
-            val nextKey = if(response.info.pages == null) {
+           val nextKey = if(response.info.pages == null) {
                 null
             } else if (page < response.info.pages) {
                 page +1
             } else {
                  null
             }
+
             LoadResult.Page(
                 data = response.result ?: emptyList(),
                 prevKey = if (page > 1) page-1 else null,

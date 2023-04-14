@@ -18,6 +18,11 @@ class CharacterViewModel @Inject constructor(
 
     private val _allCharacter = MutableStateFlow<CharacterUiState>(CharacterUiState.Loading)
     val allCharacter get() = _allCharacter.asStateFlow()
+
+    init {
+        getAllCharacter()
+    }
+
     private fun getAllCharacter() {
         viewModelScope.launch {
             getAllCharacterUseCase().cachedIn(viewModelScope).collect { pagingData ->

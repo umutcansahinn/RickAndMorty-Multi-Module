@@ -1,5 +1,6 @@
 package com.umutcansahin.data.di
 
+import com.umutcansahin.common.Constants
 import com.umutcansahin.data.api.RickAndMortyApi
 import dagger.Module
 import dagger.Provides
@@ -36,7 +37,7 @@ object NetworkModule {
     @Singleton
     fun provideRickAndMortyService(client: OkHttpClient): RickAndMortyApi {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(Constants.BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
