@@ -36,10 +36,10 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
                 viewLifecycleOwner.lifecycle,
                 Lifecycle.State.STARTED
             ).collect {
-                when(it) {
-                    is CharacterDetailUiState.Loading-> {}
-                    is CharacterDetailUiState.Error-> {}
-                    is CharacterDetailUiState.Success-> {
+                when (it) {
+                    is CharacterDetailUiState.Loading -> {}
+                    is CharacterDetailUiState.Error -> {}
+                    is CharacterDetailUiState.Success -> {
                         characterDetailFragmentUI(result = it.data)
                     }
                 }

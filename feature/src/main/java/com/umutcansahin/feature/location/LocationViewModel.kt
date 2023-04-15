@@ -14,13 +14,18 @@ import javax.inject.Inject
 @HiltViewModel
 class LocationViewModel @Inject constructor(
     private val getAllLocationUseCase: GetAllLocationUseCase
-): ViewModel(){
+) : ViewModel() {
 
     private val _allLocation = MutableStateFlow<LocationUiState>(LocationUiState.Loading)
     val allLocation get() = _allLocation.asStateFlow()
+
+    init {
+        getAllLocation()
+    }
+
     private fun getAllLocation() {
         viewModelScope.launch {
-            getAllLocationUseCase().cachedIn(viewModelScope).collect { pagingData->
+            getAllLocationUseCase().cachedIn(viewModelScope).collect { pagingData ->
                 pagingData.map { it.toMap() }.also {
                     _allLocation.value = LocationUiState.Success(it)
                 }

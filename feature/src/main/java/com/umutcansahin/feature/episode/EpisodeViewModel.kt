@@ -18,6 +18,11 @@ class EpisodeViewModel @Inject constructor(
 
     private val _allEpisode = MutableStateFlow<EpisodeUiState>(EpisodeUiState.Loading)
     val allEpisode get() = _allEpisode.asStateFlow()
+
+    init {
+        getAllEpisode()
+    }
+
     private fun getAllEpisode() {
         viewModelScope.launch {
             getAllEpisodeUseCase().cachedIn(viewModelScope).collect { pagingData ->

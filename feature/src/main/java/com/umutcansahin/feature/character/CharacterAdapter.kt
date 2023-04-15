@@ -9,7 +9,6 @@ import com.umutcansahin.feature.databinding.AdapterCharacterBinding
 class CharacterAdapter(
     private val itemClickListener: ((Int) -> Unit)
 ) : PagingDataAdapter<CharacterResultUiModel, CharacterViewHolder>(DiffUtils) {
-
     object DiffUtils : DiffUtil.ItemCallback<CharacterResultUiModel>() {
         override fun areItemsTheSame(
             oldItem: CharacterResultUiModel,
@@ -24,13 +23,12 @@ class CharacterAdapter(
         ): Boolean {
             return oldItem == newItem
         }
-
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val character = getItem(position)
         character?.let {
-            holder.bind(character = it,itemClickListener)
+            holder.bind(character = it, itemClickListener)
         }
     }
 

@@ -1,5 +1,6 @@
 package com.umutcansahin.data.paging_source
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.umutcansahin.data.api.RickAndMortyApi
@@ -21,9 +22,9 @@ class CharacterPagingSource(
         return try {
             val response = rickAndMortyApi.getAllCharacter(page = page)
 
-           val nextKey = if(response.info.pages == null) {
+           val nextKey = if(response.info == null) {
                 null
-            } else if (page < response.info.pages) {
+            } else if (page < response.info.pages!!) {
                 page +1
             } else {
                  null
@@ -35,6 +36,7 @@ class CharacterPagingSource(
                 nextKey = nextKey
             )
         } catch (e: Exception) {
+            Log.d("eeeeerrorr", e.localizedMessage.toString())
             LoadResult.Error(e)
         }
     }

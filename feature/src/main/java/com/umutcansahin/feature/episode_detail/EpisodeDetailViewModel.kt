@@ -14,7 +14,8 @@ class EpisodeDetailViewModel @Inject constructor(
     private val getEpisodeByIdUseCase: GetEpisodeByIdUseCase
 ) : ViewModel() {
 
-    private val _singleEpisode = MutableStateFlow<EpisodeDetailUiState>(EpisodeDetailUiState.Loading)
+    private val _singleEpisode =
+        MutableStateFlow<EpisodeDetailUiState>(EpisodeDetailUiState.Loading)
     val singleEpisode get() = _singleEpisode.asStateFlow()
     fun getEpisodeById(episodeId: Int) {
         viewModelScope.launch {

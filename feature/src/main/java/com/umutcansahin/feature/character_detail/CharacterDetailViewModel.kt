@@ -14,7 +14,8 @@ class CharacterDetailViewModel @Inject constructor(
     private val getCharacterByIdUseCase: GetCharacterByIdUseCase
 ) : ViewModel() {
 
-    private val _singleCharacter = MutableStateFlow<CharacterDetailUiState>(CharacterDetailUiState.Loading)
+    private val _singleCharacter =
+        MutableStateFlow<CharacterDetailUiState>(CharacterDetailUiState.Loading)
     val singleCharacter get() = _singleCharacter.asStateFlow()
     fun getCharacterById(characterId: Int) {
         viewModelScope.launch {

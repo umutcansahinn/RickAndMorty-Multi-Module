@@ -28,16 +28,17 @@ class CharacterFragment : Fragment(R.layout.fragment_character) {
     private fun initView() {
         binding.recyclerView.adapter = characterAdapter
     }
+
     private fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.allCharacter.flowWithLifecycle(
                 viewLifecycleOwner.lifecycle,
                 Lifecycle.State.STARTED
             ).collect {
-                when(it) {
-                    is CharacterUiState.Loading-> {}
-                    is CharacterUiState.Error-> {}
-                    is CharacterUiState.Success-> {
+                when (it) {
+                    is CharacterUiState.Loading -> {}
+                    is CharacterUiState.Error -> {}
+                    is CharacterUiState.Success -> {
                         characterAdapter.submitData(it.data)
                     }
                 }

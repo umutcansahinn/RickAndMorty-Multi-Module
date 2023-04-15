@@ -8,12 +8,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
 class LocationDetailViewModel @Inject constructor(
     private val getLocationByIdUseCase: GetLocationByIdUseCase
-): ViewModel(){
+) : ViewModel() {
 
-    private val _singleLocation = MutableStateFlow<LocationDetailUiState>(LocationDetailUiState.Loading)
+    private val _singleLocation =
+        MutableStateFlow<LocationDetailUiState>(LocationDetailUiState.Loading)
     val singleLocation get() = _singleLocation.asStateFlow()
     fun getLocationById(locationId: Int) {
         viewModelScope.launch {

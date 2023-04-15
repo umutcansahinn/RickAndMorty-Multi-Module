@@ -1,5 +1,3 @@
-import BuildPlugins.kapt
-
 plugins {
     id(BuildPlugins.androidApplication)
     id(BuildPlugins.kotlinJetBrains)
