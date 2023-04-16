@@ -2,6 +2,7 @@ package com.umutcansahin.feature.location_detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.umutcansahin.common.Resource
 import com.umutcansahin.domain.use_case.GetLocationByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,9 +20,17 @@ class LocationDetailViewModel @Inject constructor(
     val singleLocation get() = _singleLocation.asStateFlow()
     fun getLocationById(locationId: Int) {
         viewModelScope.launch {
-            _singleLocation.value = LocationDetailUiState.Success(
-                getLocationByIdUseCase(locationId).toMap()
-            )
+            when(val result = getLocationByIdUseCase(locationId)) {
+                is Resource.Loading-> {
+                    _singleLocation.value = LocationDetailUiState.Loading
+                }
+                is Resource.Error-> {
+                    _singleLocation.value = LocationDetailUiState.Error(result.errorMessage)
+                }
+                is Resource.Success-> {
+                    _singleLocation.value = LocationDetailUiState.Success(result.data.toMap())
+                }
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.umutcansahin.feature.episode_detail
+package com.umutcansahin.feature.character_detail_bottom_sheet
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,24 +11,25 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EpisodeDetailViewModel @Inject constructor(
+class CharacterBottomSheetViewModel @Inject constructor(
     private val getEpisodeByIdUseCase: GetEpisodeByIdUseCase
-) : ViewModel() {
+): ViewModel() {
 
     private val _singleEpisode =
-        MutableStateFlow<EpisodeDetailUiState>(EpisodeDetailUiState.Loading)
+        MutableStateFlow<CharacterBottomSheetUiState>(CharacterBottomSheetUiState.Loading)
     val singleEpisode get() = _singleEpisode.asStateFlow()
+
     fun getEpisodeById(episodeId: Int) {
         viewModelScope.launch {
             when(val result = getEpisodeByIdUseCase(episodeId)) {
                 is Resource.Loading-> {
-                    _singleEpisode.value = EpisodeDetailUiState.Loading
+                    _singleEpisode.value = CharacterBottomSheetUiState.Loading
                 }
                 is Resource.Error-> {
-                    _singleEpisode.value = EpisodeDetailUiState.Error(result.errorMessage)
+                    _singleEpisode.value = CharacterBottomSheetUiState.Error(result.errorMessage)
                 }
                 is Resource.Success-> {
-                    _singleEpisode.value = EpisodeDetailUiState.Success(result.data.toMap())
+                    _singleEpisode.value = CharacterBottomSheetUiState.Success(result.data.toMap())
                 }
             }
         }

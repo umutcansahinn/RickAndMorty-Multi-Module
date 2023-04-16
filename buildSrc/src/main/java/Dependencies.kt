@@ -46,7 +46,7 @@ object Versions {
     val espressoCore = "3.5.1"
     val navVersion = "2.5.3"
     val paging = "3.1.1"
-    val glide = "4.14.2"
+    val glide = "4.15.1"
     val retrofit = "2.9.0"
     val retrofitCor = "0.9.2"
     val gson = "2.10"
@@ -90,7 +90,7 @@ object AndroidLibraries {
 
     //glide
     val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
-    val glideComp = "com.github.bumptech.glide:compiler:${Versions.glide}"
+   // val glideComp = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
     // Retrofit
     val retrofit =  "com.squareup.retrofit2:retrofit:${Versions.retrofit}"

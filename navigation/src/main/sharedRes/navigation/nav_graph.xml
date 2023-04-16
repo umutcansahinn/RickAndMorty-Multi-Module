@@ -27,6 +27,9 @@
         <argument
             android:name="characterId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_characterDetailFragment_to_characterBottomSheet"
+            app:destination="@id/characterBottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/episodeDetailFragment"
@@ -52,4 +55,12 @@
             android:name="locationId"
             app:argType="integer" />
     </fragment>
+    <dialog
+        android:id="@+id/characterBottomSheet"
+        android:name="com.umutcansahin.feature.character_detail_bottom_sheet.CharacterBottomSheetFragment"
+        android:label="CharacterBottomSheet" >
+        <argument
+            android:name="episodeId"
+            app:argType="integer" />
+    </dialog>
 </navigation>

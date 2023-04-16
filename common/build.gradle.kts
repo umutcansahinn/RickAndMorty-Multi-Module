@@ -43,5 +43,4 @@ dependencies {
     androidTestImplementation(AndroidLibraries.espressoCore)
 
     implementation(AndroidLibraries.glide)
-    annotationProcessor(AndroidLibraries.glideComp)
 }

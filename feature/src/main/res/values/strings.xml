@@ -1,4 +1,15 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="episode_1">Episode/1</string>
+    <string name="rick_and_morty">Rick And Morty</string>
+    <string name="alive">Alive</string>
+    <string name="human">Human</string>
+    <string name="male">Male</string>
+    <string name="earth">Earth</string>
+    <string name="the_ricklantis_mixup">The Ricklantis Mixup</string>
+    <string name="september_10_2017">September 10, 2017</string>
+    <string name="s03e07">S03E07</string>
+    <string name="_2017_11_10t12_56_36_618z">2017-11-10T12:56:36.618Z</string>
+    <string name="error_message">error Message</string>
 </resources>
