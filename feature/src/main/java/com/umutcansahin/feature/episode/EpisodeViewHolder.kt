@@ -1,6 +1,5 @@
 package com.umutcansahin.feature.episode
 
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.umutcansahin.feature.databinding.AdapterEpisodeBinding
 
@@ -15,8 +14,6 @@ class EpisodeViewHolder(
             root.setOnClickListener {
                 itemClickListener.invoke(episode.id)
             }
-            Log.d("ddviewholder", episode.name)
-            Log.d("ddviewholder", "umut")
         }
     }
 }

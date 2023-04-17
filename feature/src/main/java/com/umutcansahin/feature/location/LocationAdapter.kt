@@ -24,7 +24,6 @@ class LocationAdapter(
         ): Boolean {
             return oldItem == newItem
         }
-
     }
 
     override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {

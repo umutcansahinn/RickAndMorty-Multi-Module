@@ -19,6 +19,7 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
     private val binding by viewBinding(FragmentLocationBinding::bind)
     private val viewModel by viewModels<LocationViewModel>()
     private val locationAdapter = LocationAdapter(::itemSetClick)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -53,5 +54,4 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
             LocationFragmentDirections.actionLocationFragmentToLocationDetailFragment(locationId = locationId)
         )
     }
-
 }

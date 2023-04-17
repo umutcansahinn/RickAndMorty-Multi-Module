@@ -10,6 +10,6 @@
     <gradient
         android:startColor="@color/green200"
         android:useLevel="false"
-        android:endColor="@color/green250"
+        android:endColor="@color/green50"
         android:type="linear"/>
 </shape>

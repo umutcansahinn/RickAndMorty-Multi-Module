@@ -1,19 +1,16 @@
 package com.umutcansahin.feature.episode_detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.umutcansahin.common.viewBinding
 import com.umutcansahin.feature.R
-import com.umutcansahin.feature.character_detail.CharacterDetailUiState
 import com.umutcansahin.feature.databinding.FragmentEpisodeDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

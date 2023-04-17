@@ -1,6 +1,5 @@
 package com.umutcansahin.feature.location
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
@@ -29,10 +28,6 @@ class LocationViewModel @Inject constructor(
             getAllLocationUseCase().cachedIn(viewModelScope).collect { pagingData ->
                 pagingData.map { it.toMap() }.also {
                     _allLocation.value = LocationUiState.Success(it)
-                    it.map {
-                        Log.d("ddviewModel","umut")
-                        Log.d("ddviewModel",it.name)
-                    }
                 }
             }
         }

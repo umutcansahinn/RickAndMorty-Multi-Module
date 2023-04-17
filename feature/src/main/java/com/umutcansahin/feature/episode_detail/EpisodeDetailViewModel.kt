@@ -24,6 +24,7 @@ class EpisodeDetailViewModel @Inject constructor(
     private val _groupCharacter =
         MutableStateFlow<CharacterGroupUiState>(CharacterGroupUiState.Loading)
     val groupCharacter get() = _groupCharacter.asStateFlow()
+
     fun getEpisodeById(episodeId: Int) {
         viewModelScope.launch {
             when (val result = getEpisodeByIdUseCase(episodeId)) {

@@ -14,4 +14,15 @@
     <string name="error_message">error Message</string>
     <string name="pilot">Pilot</string>
     <string name="s01e01">S01E01</string>
+    <string name="empty">empty</string>
+    <string name="name">Name:</string>
+    <string name="status">Status:</string>
+    <string name="species">Species:</string>
+    <string name="gender">Gender:</string>
+    <string name="origin">Origin:</string>
+    <string name="air_date">Air Date:</string>
+    <string name="created">Created:</string>
+    <string name="episode">Episode:</string>
+    <string name="type">Type:</string>
+    <string name="dimension">Dimension:</string>
 </resources>

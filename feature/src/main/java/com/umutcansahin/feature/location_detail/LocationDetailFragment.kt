@@ -5,19 +5,22 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.umutcansahin.common.viewBinding
+import com.umutcansahin.feature.R
 import com.umutcansahin.feature.databinding.FragmentLocationDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LocationDetailFragment : Fragment() {
+class LocationDetailFragment : Fragment(R.layout.fragment_location_detail) {
     private val binding by viewBinding(FragmentLocationDetailBinding::bind)
     private val viewModel by viewModels<LocationDetailViewModel>()
     private val args: LocationDetailFragmentArgs by navArgs()
+    private val locationDetailAdapter = LocationDetailAdapter()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -26,15 +29,28 @@ class LocationDetailFragment : Fragment() {
 
     private fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.singleLocation.flowWithLifecycle(
-                viewLifecycleOwner.lifecycle,
-                Lifecycle.State.STARTED
-            ).collect {
-                when (it) {
-                    is LocationDetailUiState.Loading -> {}
-                    is LocationDetailUiState.Error -> {}
-                    is LocationDetailUiState.Success -> {
-                        locationDetailFragmentUI(result = it.data)
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.singleLocation.collect {
+                        when (it) {
+                            is LocationDetailUiState.Loading -> {}
+                            is LocationDetailUiState.Error -> {}
+                            is LocationDetailUiState.Success -> {
+                                locationDetailFragmentUI(result = it.data)
+                                setCharacterGroupId(characters = it.data.residents)
+                            }
+                        }
+                    }
+                }
+                launch {
+                    viewModel.groupCharacter.collect {
+                        when (it) {
+                            is CharacterGroupUiState.Loading -> {}
+                            is CharacterGroupUiState.Error -> {}
+                            is CharacterGroupUiState.Success -> {
+                                locationDetailAdapter.updateList(it.data)
+                            }
+                        }
                     }
                 }
             }
@@ -44,11 +60,27 @@ class LocationDetailFragment : Fragment() {
     private fun initView() {
         val locationId = args.locationId
         viewModel.getLocationById(locationId = locationId)
+
+        binding.imageBackButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.recyclerView.adapter = locationDetailAdapter
     }
 
     private fun locationDetailFragmentUI(result: LocationDetailResultUiModel) {
         binding.apply {
+            textViewNameUrl.text = result.url.drop(32)
+            textViewName.text = result.name
+            textViewType.text = result.type
+            textViewDimension.text = result.dimension
 
         }
+    }
+
+    private fun setCharacterGroupId(characters: List<String>) {
+        val characterGroupId = characters.map {
+            it.drop(42)
+        }.toString()
+        viewModel.getCharacterByGroupId(characterGroupId = characterGroupId)
     }
 }

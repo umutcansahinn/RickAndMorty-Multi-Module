@@ -2,7 +2,6 @@ package com.umutcansahin.data.repository
 
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.umutcansahin.common.orEmpty
 import com.umutcansahin.data.mapper.toMap
 import com.umutcansahin.data.source.RemoteDataSource
 import com.umutcansahin.domain.model.*
