@@ -46,10 +46,28 @@ class EpisodeDetailFragment : Fragment(R.layout.fragment_episode_detail) {
                 launch {
                     viewModel.groupCharacter.collect {
                         when (it) {
-                            is CharacterGroupUiState.Loading -> {}
-                            is CharacterGroupUiState.Error -> {}
+                            is CharacterGroupUiState.Loading -> {
+                                binding.apply {
+                                    progressBar.visibility = View.VISIBLE
+                                    textViewErrorMessage.visibility = View.GONE
+                                    uiLayout.visibility = View.GONE
+                                }
+                            }
+                            is CharacterGroupUiState.Error -> {
+                                binding.apply {
+                                    progressBar.visibility = View.GONE
+                                    textViewErrorMessage.visibility = View.VISIBLE
+                                    textViewErrorMessage.text = it.message
+                                    uiLayout.visibility = View.GONE
+                                }
+                            }
                             is CharacterGroupUiState.Success -> {
-                                episodeDetailAdapter.updateList(it.data)
+                                binding.apply {
+                                    progressBar.visibility = View.GONE
+                                    textViewErrorMessage.visibility = View.GONE
+                                    uiLayout.visibility = View.VISIBLE
+                                    episodeDetailAdapter.updateList(it.data)
+                                }
                             }
                         }
                     }

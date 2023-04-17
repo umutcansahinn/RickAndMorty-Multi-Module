@@ -33,11 +33,29 @@ class LocationDetailFragment : Fragment(R.layout.fragment_location_detail) {
                 launch {
                     viewModel.singleLocation.collect {
                         when (it) {
-                            is LocationDetailUiState.Loading -> {}
-                            is LocationDetailUiState.Error -> {}
+                            is LocationDetailUiState.Loading -> {
+                                binding.apply {
+                                    progressBar.visibility = View.VISIBLE
+                                    textViewErrorMessage.visibility = View.GONE
+                                    uiLayout.visibility = View.GONE
+                                }
+                            }
+                            is LocationDetailUiState.Error -> {
+                                binding.apply {
+                                    progressBar.visibility = View.GONE
+                                    textViewErrorMessage.visibility = View.VISIBLE
+                                    textViewErrorMessage.text = it.message
+                                    uiLayout.visibility = View.GONE
+                                }
+                            }
                             is LocationDetailUiState.Success -> {
-                                locationDetailFragmentUI(result = it.data)
-                                setCharacterGroupId(characters = it.data.residents)
+                                binding.apply {
+                                    progressBar.visibility = View.GONE
+                                    textViewErrorMessage.visibility = View.GONE
+                                    uiLayout.visibility = View.VISIBLE
+                                    locationDetailFragmentUI(result = it.data)
+                                    setCharacterGroupId(characters = it.data.residents)
+                                }
                             }
                         }
                     }
@@ -45,10 +63,28 @@ class LocationDetailFragment : Fragment(R.layout.fragment_location_detail) {
                 launch {
                     viewModel.groupCharacter.collect {
                         when (it) {
-                            is CharacterGroupUiState.Loading -> {}
-                            is CharacterGroupUiState.Error -> {}
+                            is CharacterGroupUiState.Loading -> {
+                                binding.apply {
+                                    progressBarRecyclerView.visibility = View.VISIBLE
+                                    textViewErrorMessageRecyclerView.visibility = View.GONE
+                                    recyclerView.visibility = View.GONE
+                                }
+                            }
+                            is CharacterGroupUiState.Error -> {
+                                binding.apply {
+                                    progressBarRecyclerView.visibility = View.GONE
+                                    textViewErrorMessageRecyclerView.visibility = View.VISIBLE
+                                    textViewErrorMessageRecyclerView.text = it.message
+                                    recyclerView.visibility = View.GONE
+                                }
+                            }
                             is CharacterGroupUiState.Success -> {
-                                locationDetailAdapter.updateList(it.data)
+                                binding.apply {
+                                    progressBarRecyclerView.visibility = View.GONE
+                                    textViewErrorMessageRecyclerView.visibility = View.GONE
+                                    recyclerView.visibility = View.VISIBLE
+                                    locationDetailAdapter.updateList(it.data)
+                                }
                             }
                         }
                     }
