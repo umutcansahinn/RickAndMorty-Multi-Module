@@ -8,6 +8,6 @@ class LocationViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(location: LocationResultUiModel, itemClickListener: (Int) -> Unit) {
-
+        binding.textviewDeneme.text = location.name
     }
 }

@@ -21,7 +21,7 @@ class RemoteDataSourceImpl @Inject constructor(
     override fun getAllCharacter(): Flow<PagingData<CharacterResult>> {
         return Pager(
             config = PagingConfig(
-                pageSize = Constants.NETWORK_PAGE_SIZE,
+                pageSize = Constants.NETWORK_PAGE_SIZE
             ),
             pagingSourceFactory = {
                 CharacterPagingSource(rickAndMortyApi = rickAndMortyApi)
@@ -53,6 +53,10 @@ class RemoteDataSourceImpl @Inject constructor(
 
     override suspend fun getCharacterById(characterId: Int): CharacterResult {
         return rickAndMortyApi.getCharacterById(characterId = characterId)
+    }
+
+    override suspend fun getCharacterByGroupId(characterGroupId: String): List<CharacterResult> {
+        return rickAndMortyApi.getCharacterByGroupId(characterGroupId = characterGroupId)
     }
 
     override suspend fun getEpisodeById(episodeId: Int): EpisodeResult {

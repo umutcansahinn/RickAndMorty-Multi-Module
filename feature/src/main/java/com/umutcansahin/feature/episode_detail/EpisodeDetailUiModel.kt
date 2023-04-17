@@ -9,3 +9,7 @@ data class EpisodeDetailResultUiModel(
     val name: String,
     val url: String
 )
+
+data class CharacterGroupResultUiModel(
+    val image: String
+)

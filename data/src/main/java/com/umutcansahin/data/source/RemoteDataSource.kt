@@ -13,6 +13,7 @@ interface RemoteDataSource {
     fun getAllLocation(): Flow<PagingData<LocationResult>>
 
     suspend fun getCharacterById(characterId: Int): CharacterResult
+    suspend fun getCharacterByGroupId(characterGroupId: String): List<CharacterResult>
     suspend fun getEpisodeById(episodeId: Int): EpisodeResult
     suspend fun getLocationById(locationId: Int): LocationResult
 }

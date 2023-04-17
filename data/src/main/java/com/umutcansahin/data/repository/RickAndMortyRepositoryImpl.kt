@@ -36,6 +36,10 @@ class RickAndMortyRepositoryImpl @Inject constructor(
         return remoteDataSource.getCharacterById(characterId).toMap()
     }
 
+    override suspend fun getCharacterByGroupId(characterGroupId: String): List<CharacterResultDM> {
+        return remoteDataSource.getCharacterByGroupId(characterGroupId).map { it.toMap() }
+    }
+
     override suspend fun getEpisodeById(episodeId: Int): EpisodeResultDM {
         return remoteDataSource.getEpisodeById(episodeId).toMap()
     }

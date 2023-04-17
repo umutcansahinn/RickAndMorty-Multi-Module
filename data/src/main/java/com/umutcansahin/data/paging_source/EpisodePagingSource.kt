@@ -7,12 +7,12 @@ import com.umutcansahin.data.response.episode.EpisodeResult
 
 class EpisodePagingSource(
     private val rickAndMortyApi: RickAndMortyApi,
-): PagingSource<Int, EpisodeResult>() {
+) : PagingSource<Int, EpisodeResult>() {
 
     override fun getRefreshKey(state: PagingState<Int, EpisodeResult>): Int? {
-        return state.anchorPosition?.let {
-            state.closestPageToPosition(it)?.prevKey?.plus(1)
-                ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
+        return state.anchorPosition?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
 
@@ -21,7 +21,7 @@ class EpisodePagingSource(
         return try {
             val response = rickAndMortyApi.getAllEpisode(page = page)
 
-            val nextKey = if(response.info.pages == null) {
+            val nextKey = if (response.info.pages == null) {
                 null
             } else if (page < response.info.pages) {
                 page +1

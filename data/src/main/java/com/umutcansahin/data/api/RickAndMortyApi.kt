@@ -22,7 +22,12 @@ interface RickAndMortyApi {
         @Path("characterId") characterId: Int
     ): CharacterResult
 
-    @GET("episode")
+    @GET("character/{characterGroupId}")
+    suspend fun getCharacterByGroupId(
+        @Path("characterGroupId") characterGroupId: String
+    ): List<CharacterResult>
+
+    @GET("episode/")
     suspend fun getAllEpisode(
         @Query("page") page: Int
     ): EpisodeResponse
@@ -32,7 +37,7 @@ interface RickAndMortyApi {
         @Path("episodeId") episodeId: Int
     ): EpisodeResult
 
-    @GET("location")
+    @GET("location/")
     suspend fun getAllLocation(
         @Query("page") page: Int
     ): LocationResponse

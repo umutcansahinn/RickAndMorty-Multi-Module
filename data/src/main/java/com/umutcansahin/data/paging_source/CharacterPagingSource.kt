@@ -1,6 +1,5 @@
 package com.umutcansahin.data.paging_source
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.umutcansahin.data.api.RickAndMortyApi
@@ -8,7 +7,7 @@ import com.umutcansahin.data.response.character.CharacterResult
 
 class CharacterPagingSource(
     private val rickAndMortyApi: RickAndMortyApi,
-): PagingSource<Int,CharacterResult>() {
+) : PagingSource<Int, CharacterResult>() {
 
     override fun getRefreshKey(state: PagingState<Int, CharacterResult>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
@@ -22,21 +21,20 @@ class CharacterPagingSource(
         return try {
             val response = rickAndMortyApi.getAllCharacter(page = page)
 
-           val nextKey = if(response.info == null) {
+            val nextKey = if (response.info.pages == null) {
                 null
-            } else if (page < response.info.pages!!) {
-                page +1
+            } else if (page < response.info.pages) {
+                page + 1
             } else {
-                 null
+                null
             }
 
             LoadResult.Page(
                 data = response.result ?: emptyList(),
-                prevKey = if (page > 1) page-1 else null,
+                prevKey = if (page > 1) page - 1 else null,
                 nextKey = nextKey
             )
         } catch (e: Exception) {
-            Log.d("eeeeerrorr", e.localizedMessage.toString())
             LoadResult.Error(e)
         }
     }

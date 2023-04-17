@@ -4,4 +4,6 @@
     <color name="green200">#9CCC65</color>
     <color name="green300">#264700</color>
     <color name="green250">#90FF11</color>
+    <color name="black">#000000</color>
+    <color name="green50">#E8F5E9</color>
 </resources>

@@ -11,6 +11,7 @@ interface RickAndMortyRepository {
     fun getAllLocation(): Flow<PagingData<LocationResultDM>>
 
     suspend fun getCharacterById(characterId: Int): CharacterResultDM
+    suspend fun getCharacterByGroupId(characterGroupId: String): List<CharacterResultDM>
     suspend fun getEpisodeById(episodeId: Int): EpisodeResultDM
     suspend fun getLocationById(locationId: Int): LocationResultDM
 }
