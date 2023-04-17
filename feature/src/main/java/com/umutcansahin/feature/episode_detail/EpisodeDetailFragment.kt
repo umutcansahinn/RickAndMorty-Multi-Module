@@ -9,7 +9,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.umutcansahin.common.gone
 import com.umutcansahin.common.viewBinding
+import com.umutcansahin.common.visible
 import com.umutcansahin.feature.R
 import com.umutcansahin.feature.databinding.FragmentEpisodeDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,11 +36,29 @@ class EpisodeDetailFragment : Fragment(R.layout.fragment_episode_detail) {
                 launch {
                     viewModel.singleEpisode.collect {
                         when (it) {
-                            is EpisodeDetailUiState.Loading -> {}
-                            is EpisodeDetailUiState.Error -> {}
+                            is EpisodeDetailUiState.Loading -> {
+                                binding.apply {
+                                    progressBar.visible()
+                                    textViewErrorMessage.gone()
+                                    uiLayout.gone()
+                                }
+                            }
+                            is EpisodeDetailUiState.Error -> {
+                                binding.apply {
+                                    progressBar.gone()
+                                    textViewErrorMessage.visible()
+                                    textViewErrorMessage.text = it.message
+                                    uiLayout.gone()
+                                }
+                            }
                             is EpisodeDetailUiState.Success -> {
-                                episodeDetailFragmentUI(result = it.data)
-                                setCharacterGroupId(characters = it.data.characters)
+                                binding.apply {
+                                    progressBar.gone()
+                                    textViewErrorMessage.gone()
+                                    uiLayout.visible()
+                                    episodeDetailFragmentUI(result = it.data)
+                                    setCharacterGroupId(characters = it.data.characters)
+                                }
                             }
                         }
                     }
@@ -48,24 +68,24 @@ class EpisodeDetailFragment : Fragment(R.layout.fragment_episode_detail) {
                         when (it) {
                             is CharacterGroupUiState.Loading -> {
                                 binding.apply {
-                                    progressBar.visibility = View.VISIBLE
-                                    textViewErrorMessage.visibility = View.GONE
-                                    uiLayout.visibility = View.GONE
+                                    progressBarRecyclerView.visible()
+                                    textViewErrorMessageRecyclerView.gone()
+                                    recyclerView.gone()
                                 }
                             }
                             is CharacterGroupUiState.Error -> {
                                 binding.apply {
-                                    progressBar.visibility = View.GONE
-                                    textViewErrorMessage.visibility = View.VISIBLE
-                                    textViewErrorMessage.text = it.message
-                                    uiLayout.visibility = View.GONE
+                                    progressBarRecyclerView.gone()
+                                    textViewErrorMessageRecyclerView.visible()
+                                    textViewErrorMessageRecyclerView.text = it.message
+                                    recyclerView.gone()
                                 }
                             }
                             is CharacterGroupUiState.Success -> {
                                 binding.apply {
-                                    progressBar.visibility = View.GONE
-                                    textViewErrorMessage.visibility = View.GONE
-                                    uiLayout.visibility = View.VISIBLE
+                                    progressBarRecyclerView.gone()
+                                    textViewErrorMessageRecyclerView.gone()
+                                    recyclerView.visible()
                                     episodeDetailAdapter.updateList(it.data)
                                 }
                             }

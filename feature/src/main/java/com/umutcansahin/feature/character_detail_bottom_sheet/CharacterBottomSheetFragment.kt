@@ -8,7 +8,9 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.umutcansahin.common.gone
 import com.umutcansahin.common.viewBinding
+import com.umutcansahin.common.visible
 import com.umutcansahin.feature.R
 import com.umutcansahin.feature.databinding.FragmentCharacterBottomSheetBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,24 +38,24 @@ class CharacterBottomSheetFragment :
                 when (it) {
                     is CharacterBottomSheetUiState.Loading -> {
                         binding.apply {
-                            progressBar.visibility = View.VISIBLE
-                            textViewErrorMessage.visibility = View.GONE
-                            uiLayout.visibility = View.GONE
+                            progressBar.visible()
+                            textViewErrorMessage.gone()
+                            uiLayout.gone()
                         }
                     }
                     is CharacterBottomSheetUiState.Error -> {
                         binding.apply {
-                            progressBar.visibility = View.GONE
-                            textViewErrorMessage.visibility = View.VISIBLE
+                            progressBar.gone()
+                            textViewErrorMessage.visible()
                             textViewErrorMessage.text = it.message
-                            uiLayout.visibility = View.GONE
+                            uiLayout.gone()
                         }
                     }
                     is CharacterBottomSheetUiState.Success -> {
                         binding.apply {
-                            progressBar.visibility = View.GONE
-                            textViewErrorMessage.visibility = View.GONE
-                            uiLayout.visibility = View.VISIBLE
+                            progressBar.gone()
+                            textViewErrorMessage.gone()
+                            uiLayout.visible()
                             characterBsFragmentUI(model = it.data)
                         }
                     }

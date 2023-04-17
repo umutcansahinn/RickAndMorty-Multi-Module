@@ -58,6 +58,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <ProgressBar
+            android:id="@+id/progressBarRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/recyclerView"
+            app:layout_constraintBottom_toBottomOf="@id/recyclerView"
+            app:layout_constraintStart_toStartOf="@id/recyclerView"
+            app:layout_constraintEnd_toEndOf="@id/recyclerView"/>
+
+        <TextView
+            android:id="@+id/textViewErrorMessageRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/error_message"
+            android:textColor="@color/black"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:background="@drawable/background_text_view"
+            android:textSize="20sp"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            app:layout_constraintTop_toTopOf="@id/recyclerView"
+            app:layout_constraintBottom_toBottomOf="@id/recyclerView"
+            app:layout_constraintStart_toStartOf="@id/recyclerView"
+            app:layout_constraintEnd_toEndOf="@id/recyclerView" />
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"

@@ -9,8 +9,10 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.umutcansahin.common.gone
 import com.umutcansahin.common.loadImage
 import com.umutcansahin.common.viewBinding
+import com.umutcansahin.common.visible
 import com.umutcansahin.feature.R
 import com.umutcansahin.feature.databinding.FragmentCharacterDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,24 +48,24 @@ class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
                 when (it) {
                     is CharacterDetailUiState.Loading -> {
                         binding.apply {
-                            progressBar.visibility = View.VISIBLE
-                            textViewErrorMessage.visibility = View.GONE
-                            uiLayout.visibility = View.GONE
+                            progressBar.visible()
+                            textViewErrorMessage.gone()
+                            uiLayout.gone()
                         }
                     }
                     is CharacterDetailUiState.Error -> {
                         binding.apply {
-                            progressBar.visibility = View.GONE
-                            textViewErrorMessage.visibility = View.VISIBLE
+                            progressBar.gone()
+                            textViewErrorMessage.visible()
                             textViewErrorMessage.text = it.message
-                            uiLayout.visibility = View.GONE
+                            uiLayout.gone()
                         }
                     }
                     is CharacterDetailUiState.Success -> {
                         binding.apply {
-                            progressBar.visibility = View.GONE
-                            textViewErrorMessage.visibility = View.GONE
-                            uiLayout.visibility = View.VISIBLE
+                            progressBar.gone()
+                            textViewErrorMessage.gone()
+                            uiLayout.visible()
                             characterDetailFragmentUI(result = it.data)
                         }
                     }
