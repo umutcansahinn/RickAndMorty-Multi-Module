@@ -152,7 +152,7 @@
             android:layout_height="48dp"
             android:text="@string/male"
             android:gravity="center"
-            android:background="@drawable/background_text_view"
+            android:background="@drawable/background_text_view_color50"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_marginStart="8dp"
