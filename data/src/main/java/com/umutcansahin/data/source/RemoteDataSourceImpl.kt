@@ -21,7 +21,9 @@ class RemoteDataSourceImpl @Inject constructor(
     override fun getAllCharacter(): Flow<PagingData<CharacterResult>> {
         return Pager(
             config = PagingConfig(
-                pageSize = Constants.NETWORK_PAGE_SIZE
+                pageSize = Constants.NETWORK_PAGE_SIZE,
+                enablePlaceholders = false,
+                initialLoadSize = Constants.NETWORK_PAGE_SIZE
             ),
             pagingSourceFactory = {
                 CharacterPagingSource(rickAndMortyApi = rickAndMortyApi)
@@ -32,7 +34,9 @@ class RemoteDataSourceImpl @Inject constructor(
     override fun getAllEpisode(): Flow<PagingData<EpisodeResult>> {
         return Pager(
             config = PagingConfig(
-                pageSize = Constants.NETWORK_PAGE_SIZE
+                pageSize = Constants.NETWORK_PAGE_SIZE,
+                enablePlaceholders = false,
+                initialLoadSize = Constants.NETWORK_PAGE_SIZE
             ),
             pagingSourceFactory = {
                 EpisodePagingSource(rickAndMortyApi = rickAndMortyApi)
@@ -43,7 +47,9 @@ class RemoteDataSourceImpl @Inject constructor(
     override fun getAllLocation(): Flow<PagingData<LocationResult>> {
         return Pager(
             config = PagingConfig(
-                pageSize = Constants.NETWORK_PAGE_SIZE
+                pageSize = Constants.NETWORK_PAGE_SIZE,
+                enablePlaceholders = false,
+                initialLoadSize = Constants.NETWORK_PAGE_SIZE
             ),
             pagingSourceFactory = {
                 LocationPagingSource(rickAndMortyApi = rickAndMortyApi)
