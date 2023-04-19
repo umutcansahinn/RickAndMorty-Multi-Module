@@ -5,7 +5,6 @@ object ConfigData {
     const val versionCode = 1
     const val versionName = "1.0"
     const val jvmTarget = "1.8"
-
 }
 
 object Modules {
@@ -30,85 +29,84 @@ object BuildPlugins {
 object Versions {
 
     //BuildPlugins
-    val androidApplication = "7.4.1"
-    val androidLibrary = "7.4.1"
-    val kotlinJetBrains = "1.8.0"
-    val hilt = "2.44"
+    const val androidApplication = "7.4.1"
+    const val androidLibrary = "7.4.1"
+    const val kotlinJetBrains = "1.8.0"
+    const val hilt = "2.44"
 
     //Android Libraries
-    val core = "1.7.0"
-    val appCompat = "1.6.1"
-    val material = "1.8.0"
-    val constraintLayout = "2.1.4"
-    val legacy = "1.0.0"
-    val junit = "4.13.2"
-    val extJunit = "1.1.5"
-    val espressoCore = "3.5.1"
-    val navVersion = "2.5.3"
-    val paging = "3.1.1"
-    val glide = "4.15.1"
-    val retrofit = "2.9.0"
-    val retrofitCor = "0.9.2"
-    val gson = "2.10"
-    val okhttp = "3.6.0"
-    val okhttpInterceptor = "4.10.0"
-    val lifecycleExt = "2.2.0"
-    val lifecycle = "2.6.1"
-    val fragment = "1.5.6"
-    val activity = "1.7.0"
+    const val core = "1.7.0"
+    const val appCompat = "1.6.1"
+    const val material = "1.8.0"
+    const val constraintLayout = "2.1.4"
+    const val legacy = "1.0.0"
+    const val junit = "4.13.2"
+    const val extJunit = "1.1.5"
+    const val espressoCore = "3.5.1"
+    const val navVersion = "2.5.3"
+    const val paging = "3.1.1"
+    const val glide = "4.15.1"
+    const val retrofit = "2.9.0"
+    const val retrofitCor = "0.9.2"
+    const val gson = "2.10"
+    const val okhttp = "3.6.0"
+    const val okhttpInterceptor = "4.10.0"
+    const val lifecycleExt = "2.2.0"
+    const val lifecycle = "2.6.1"
+    const val fragment = "1.5.6"
+    const val activity = "1.7.0"
 }
 
 object AndroidLibraries {
 
     //androidx
-    val androidxCore = "androidx.core:core-ktx:${Versions.core}"
-    val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
+    const val androidxCore = "androidx.core:core-ktx:${Versions.core}"
+    const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
 
     //material
-    val material = "com.google.android.material:material:${Versions.material}"
+    const val material = "com.google.android.material:material:${Versions.material}"
 
     //constraintLayout
-    val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    val legacy = "androidx.legacy:legacy-support-v4:${Versions.legacy}"
+    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val legacy = "androidx.legacy:legacy-support-v4:${Versions.legacy}"
 
     //test
-    val junit = "junit:junit:${Versions.junit}"
-    val extJunit = "androidx.test.ext:junit:${Versions.extJunit}"
-    val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
+    const val junit = "junit:junit:${Versions.junit}"
+    const val extJunit = "androidx.test.ext:junit:${Versions.extJunit}"
+    const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
 
     //navigation
-    val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navVersion}"
-    val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navVersion}"
-    val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navVersion}"
+    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navVersion}"
+    const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navVersion}"
+    const val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navVersion}"
 
     //hilt
-    val daggerHilt = "com.google.dagger:hilt-android:${Versions.hilt}"
-    val daggerHiltCom = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    const val daggerHilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val daggerHiltCom = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
 
     //paging3
-    val paging = "androidx.paging:paging-runtime:${Versions.paging}"
+    const val paging = "androidx.paging:paging-runtime:${Versions.paging}"
 
     //glide
-    val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
-   // val glideComp = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
 
     // Retrofit
-    val retrofit =  "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
-    val retrofitCoroutines = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Versions.retrofitCor}"
+    const val retrofit =  "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val retrofitCoroutines = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Versions.retrofitCor}"
 
     // Gson
-    val gson =  "com.google.code.gson:gson:${Versions.gson}"
+    const val gson =  "com.google.code.gson:gson:${Versions.gson}"
 
     //okhttp
-    val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
-    val okhttpInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpInterceptor}"
+    const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
+    const val okhttpInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpInterceptor}"
 
     // Lifecycle
-    val lifecycleExtensions =  "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExt}"
-    val lifecycleRunTime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-    val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-    val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment}"
-    val activity = "androidx.activity:activity-ktx:${Versions.activity}"
+    const val lifecycleExtensions =  "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExt}"
+    const val lifecycleRunTime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+    const val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment}"
+    const val activity = "androidx.activity:activity-ktx:${Versions.activity}"
 }
