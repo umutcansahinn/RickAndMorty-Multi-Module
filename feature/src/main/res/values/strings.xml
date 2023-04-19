@@ -25,4 +25,5 @@
     <string name="episode">Episode:</string>
     <string name="type">Type:</string>
     <string name="dimension">Dimension:</string>
+    <string name="retry">Retry</string>
 </resources>

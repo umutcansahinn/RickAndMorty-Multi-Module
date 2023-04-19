@@ -2,6 +2,7 @@ package com.umutcansahin.feature.location
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.umutcansahin.domain.use_case.GetAllLocationUseCase
@@ -16,7 +17,8 @@ class LocationViewModel @Inject constructor(
     private val getAllLocationUseCase: GetAllLocationUseCase
 ) : ViewModel() {
 
-    private val _allLocation = MutableStateFlow<LocationUiState>(LocationUiState.Loading)
+    private val _allLocation =
+        MutableStateFlow<PagingData<LocationResultUiModel>>(PagingData.empty())
     val allLocation get() = _allLocation.asStateFlow()
 
     init {
@@ -27,7 +29,7 @@ class LocationViewModel @Inject constructor(
         viewModelScope.launch {
             getAllLocationUseCase().cachedIn(viewModelScope).collect { pagingData ->
                 pagingData.map { it.toMap() }.also {
-                    _allLocation.value = LocationUiState.Success(it)
+                    _allLocation.value = it
                 }
             }
         }

@@ -2,6 +2,7 @@ package com.umutcansahin.feature.character
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.umutcansahin.domain.use_case.GetAllCharacterUseCase
@@ -16,7 +17,8 @@ class CharacterViewModel @Inject constructor(
     private val getAllCharacterUseCase: GetAllCharacterUseCase
 ) : ViewModel() {
 
-    private val _allCharacter = MutableStateFlow<CharacterUiState>(CharacterUiState.Loading)
+    private val _allCharacter =
+        MutableStateFlow<PagingData<CharacterResultUiModel>>(PagingData.empty())
     val allCharacter get() = _allCharacter.asStateFlow()
 
     init {
@@ -27,7 +29,7 @@ class CharacterViewModel @Inject constructor(
         viewModelScope.launch {
             getAllCharacterUseCase().cachedIn(viewModelScope).collect { pagingData ->
                 pagingData.map { it.toMap() }.also {
-                    _allCharacter.value = CharacterUiState.Success(it)
+                    _allCharacter.value = it
                 }
             }
         }

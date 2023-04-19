@@ -2,6 +2,7 @@ package com.umutcansahin.feature.episode
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.umutcansahin.domain.use_case.GetAllEpisodeUseCase
@@ -16,7 +17,7 @@ class EpisodeViewModel @Inject constructor(
     private val getAllEpisodeUseCase: GetAllEpisodeUseCase
 ) : ViewModel() {
 
-    private val _allEpisode = MutableStateFlow<EpisodeUiState>(EpisodeUiState.Loading)
+    private val _allEpisode = MutableStateFlow<PagingData<EpisodeResultUiModel>>(PagingData.empty())
     val allEpisode get() = _allEpisode.asStateFlow()
 
     init {
@@ -27,7 +28,7 @@ class EpisodeViewModel @Inject constructor(
         viewModelScope.launch {
             getAllEpisodeUseCase().cachedIn(viewModelScope).collect { pagingData ->
                 pagingData.map { it.toMap() }.also {
-                    _allEpisode.value = EpisodeUiState.Success(it)
+                    _allEpisode.value = it
                 }
             }
         }

@@ -2,12 +2,14 @@ package com.umutcansahin.feature.episode
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import com.umutcansahin.common.viewBinding
 import com.umutcansahin.feature.R
 import com.umutcansahin.feature.databinding.FragmentEpisodeBinding
@@ -19,6 +21,7 @@ class EpisodeFragment : Fragment(R.layout.fragment_episode) {
     private val binding by viewBinding(FragmentEpisodeBinding::bind)
     private val viewModel by viewModels<EpisodeViewModel>()
     private val episodeAdapter = EpisodeAdapter(::itemSetClick)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -31,20 +34,20 @@ class EpisodeFragment : Fragment(R.layout.fragment_episode) {
                 viewLifecycleOwner.lifecycle,
                 Lifecycle.State.STARTED
             ).collect {
-                when (it) {
-                    is EpisodeUiState.Loading -> {}
-                    is EpisodeUiState.Error -> {}
-                    is EpisodeUiState.Success -> {
-                        episodeAdapter.submitData(it.data)
-                    }
-                }
+                episodeAdapter.submitData(it)
             }
         }
     }
 
     private fun initView() {
-        binding.apply {
-            recyclerView.adapter = episodeAdapter
+        binding.recyclerView.adapter = episodeAdapter
+        episodeAdapter.addLoadStateListener {
+            binding.recyclerView.isVisible = it.refresh is LoadState.NotLoading
+            binding.progressBar.isVisible = it.refresh is LoadState.Loading
+            binding.buttonRetry.isVisible = it.refresh is LoadState.Error
+        }
+        binding.buttonRetry.setOnClickListener {
+            episodeAdapter.retry()
         }
     }
 
