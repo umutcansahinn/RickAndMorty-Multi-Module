@@ -19,7 +19,7 @@ class LocationViewModel @Inject constructor(
 
     private val _allLocation =
         MutableStateFlow<PagingData<LocationResultUiModel>>(PagingData.empty())
-    val allLocation get() = _allLocation.asStateFlow()
+    val allLocation = _allLocation.asStateFlow()
 
     init {
         getAllLocation()

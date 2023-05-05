@@ -18,7 +18,7 @@ class EpisodeViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _allEpisode = MutableStateFlow<PagingData<EpisodeResultUiModel>>(PagingData.empty())
-    val allEpisode get() = _allEpisode.asStateFlow()
+    val allEpisode = _allEpisode.asStateFlow()
 
     init {
         getAllEpisode()

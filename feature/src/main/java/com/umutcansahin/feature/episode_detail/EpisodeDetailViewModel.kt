@@ -19,11 +19,11 @@ class EpisodeDetailViewModel @Inject constructor(
 
     private val _singleEpisode =
         MutableStateFlow<EpisodeDetailUiState>(EpisodeDetailUiState.Loading)
-    val singleEpisode get() = _singleEpisode.asStateFlow()
+    val singleEpisode = _singleEpisode.asStateFlow()
 
     private val _groupCharacter =
         MutableStateFlow<CharacterGroupUiState>(CharacterGroupUiState.Loading)
-    val groupCharacter get() = _groupCharacter.asStateFlow()
+    val groupCharacter = _groupCharacter.asStateFlow()
 
     fun getEpisodeById(episodeId: Int) {
         viewModelScope.launch {

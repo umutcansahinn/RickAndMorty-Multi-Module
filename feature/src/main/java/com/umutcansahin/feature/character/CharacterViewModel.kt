@@ -19,7 +19,7 @@ class CharacterViewModel @Inject constructor(
 
     private val _allCharacter =
         MutableStateFlow<PagingData<CharacterResultUiModel>>(PagingData.empty())
-    val allCharacter get() = _allCharacter.asStateFlow()
+    val allCharacter = _allCharacter.asStateFlow()
 
     init {
         getAllCharacter()

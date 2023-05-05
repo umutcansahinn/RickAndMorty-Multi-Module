@@ -19,11 +19,11 @@ class LocationDetailViewModel @Inject constructor(
 
     private val _singleLocation =
         MutableStateFlow<LocationDetailUiState>(LocationDetailUiState.Loading)
-    val singleLocation get() = _singleLocation.asStateFlow()
+    val singleLocation = _singleLocation.asStateFlow()
 
     private val _groupCharacter =
         MutableStateFlow<CharacterGroupUiState>(CharacterGroupUiState.Loading)
-    val groupCharacter get() = _groupCharacter.asStateFlow()
+    val groupCharacter = _groupCharacter.asStateFlow()
 
     fun getLocationById(locationId: Int) {
         viewModelScope.launch {

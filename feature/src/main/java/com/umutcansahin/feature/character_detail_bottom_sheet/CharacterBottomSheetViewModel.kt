@@ -17,7 +17,7 @@ class CharacterBottomSheetViewModel @Inject constructor(
 
     private val _singleEpisode =
         MutableStateFlow<CharacterBottomSheetUiState>(CharacterBottomSheetUiState.Loading)
-    val singleEpisode get() = _singleEpisode.asStateFlow()
+    val singleEpisode = _singleEpisode.asStateFlow()
 
     fun getEpisodeById(episodeId: Int) {
         viewModelScope.launch {
