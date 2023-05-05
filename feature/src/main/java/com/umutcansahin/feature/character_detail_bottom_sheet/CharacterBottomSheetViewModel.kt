@@ -21,15 +21,17 @@ class CharacterBottomSheetViewModel @Inject constructor(
 
     fun getEpisodeById(episodeId: Int) {
         viewModelScope.launch {
-            when(val result = getEpisodeByIdUseCase(episodeId)) {
-                is Resource.Loading-> {
-                    _singleEpisode.value = CharacterBottomSheetUiState.Loading
-                }
-                is Resource.Error-> {
-                    _singleEpisode.value = CharacterBottomSheetUiState.Error(result.errorMessage)
-                }
-                is Resource.Success-> {
-                    _singleEpisode.value = CharacterBottomSheetUiState.Success(result.data.toMap())
+            getEpisodeByIdUseCase(episodeId).collect {
+                when(it) {
+                    is Resource.Loading-> {
+                        _singleEpisode.value = CharacterBottomSheetUiState.Loading
+                    }
+                    is Resource.Error-> {
+                        _singleEpisode.value = CharacterBottomSheetUiState.Error(it.errorMessage)
+                    }
+                    is Resource.Success-> {
+                        _singleEpisode.value = CharacterBottomSheetUiState.Success(it.data.toMap())
+                    }
                 }
             }
         }
