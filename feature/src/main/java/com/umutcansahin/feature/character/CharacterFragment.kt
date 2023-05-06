@@ -2,15 +2,12 @@ package com.umutcansahin.feature.character
 
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.umutcansahin.feature.base.BaseFragment
 import com.umutcansahin.feature.databinding.FragmentCharacterBinding
+import com.umutcansahin.feature.util.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CharacterFragment :
@@ -33,13 +30,8 @@ class CharacterFragment :
     }
 
     override fun observeData() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.allCharacter.flowWithLifecycle(
-                viewLifecycleOwner.lifecycle,
-                Lifecycle.State.STARTED
-            ).collect {
-                characterAdapter.submitData(it)
-            }
+        this.collectFlow(viewModel.allCharacter) {
+            characterAdapter.submitData(it)
         }
     }
 

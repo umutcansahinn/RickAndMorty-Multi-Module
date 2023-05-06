@@ -5,16 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.umutcansahin.common.gone
 import com.umutcansahin.common.visible
 import com.umutcansahin.feature.databinding.FragmentCharacterBottomSheetBinding
+import com.umutcansahin.feature.util.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CharacterBottomSheetFragment : BottomSheetDialogFragment() {
@@ -29,7 +26,7 @@ class CharacterBottomSheetFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCharacterBottomSheetBinding.inflate(inflater)
         return binding.root
     }
@@ -42,34 +39,29 @@ class CharacterBottomSheetFragment : BottomSheetDialogFragment() {
 
 
     private fun observeData() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.singleEpisode.flowWithLifecycle(
-                viewLifecycleOwner.lifecycle,
-                Lifecycle.State.STARTED
-            ).collect {
-                when (it) {
-                    is CharacterBottomSheetUiState.Loading -> {
-                        binding.apply {
-                            progressBar.visible()
-                            textViewErrorMessage.gone()
-                            uiLayout.gone()
-                        }
+        this.collectFlow(viewModel.singleEpisode) {
+            when (it) {
+                is CharacterBottomSheetUiState.Loading -> {
+                    binding.apply {
+                        progressBar.visible()
+                        textViewErrorMessage.gone()
+                        uiLayout.gone()
                     }
-                    is CharacterBottomSheetUiState.Error -> {
-                        binding.apply {
-                            progressBar.gone()
-                            textViewErrorMessage.visible()
-                            textViewErrorMessage.text = it.message
-                            uiLayout.gone()
-                        }
+                }
+                is CharacterBottomSheetUiState.Error -> {
+                    binding.apply {
+                        progressBar.gone()
+                        textViewErrorMessage.visible()
+                        textViewErrorMessage.text = it.message
+                        uiLayout.gone()
                     }
-                    is CharacterBottomSheetUiState.Success -> {
-                        binding.apply {
-                            progressBar.gone()
-                            textViewErrorMessage.gone()
-                            uiLayout.visible()
-                            characterBsFragmentUI(model = it.data)
-                        }
+                }
+                is CharacterBottomSheetUiState.Success -> {
+                    binding.apply {
+                        progressBar.gone()
+                        textViewErrorMessage.gone()
+                        uiLayout.visible()
+                        characterBsFragmentUI(model = it.data)
                     }
                 }
             }

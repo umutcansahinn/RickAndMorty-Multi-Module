@@ -2,15 +2,12 @@ package com.umutcansahin.feature.location
 
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.umutcansahin.feature.base.BaseFragment
 import com.umutcansahin.feature.databinding.FragmentLocationBinding
+import com.umutcansahin.feature.util.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LocationFragment : BaseFragment<FragmentLocationBinding>(FragmentLocationBinding::inflate) {
@@ -18,13 +15,8 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>(FragmentLocationB
     private val locationAdapter = LocationAdapter(::itemSetClick)
 
     override fun observeData() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.allLocation.flowWithLifecycle(
-                viewLifecycleOwner.lifecycle,
-                Lifecycle.State.STARTED
-            ).collect {
-                locationAdapter.submitData(it)
-            }
+        this.collectFlow(viewModel.allLocation) {
+            locationAdapter.submitData(it)
         }
     }
 
