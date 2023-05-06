@@ -1,7 +1,9 @@
 package com.umutcansahin.feature.character_detail_bottom_sheet
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
@@ -9,25 +11,35 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.umutcansahin.common.gone
-import com.umutcansahin.common.viewBinding
 import com.umutcansahin.common.visible
-import com.umutcansahin.feature.R
 import com.umutcansahin.feature.databinding.FragmentCharacterBottomSheetBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CharacterBottomSheetFragment :
-    BottomSheetDialogFragment(R.layout.fragment_character_bottom_sheet) {
-    private val binding by viewBinding(FragmentCharacterBottomSheetBinding::bind)
+class CharacterBottomSheetFragment : BottomSheetDialogFragment() {
+
+    private var _binding: FragmentCharacterBottomSheetBinding? = null
+    val binding get() = _binding!!
+
     private val viewModel by viewModels<CharacterBottomSheetViewModel>()
     private val args: CharacterBottomSheetFragmentArgs by navArgs()
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentCharacterBottomSheetBinding.inflate(inflater)
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
         observeData()
+        initView()
     }
+
 
     private fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -77,5 +89,10 @@ class CharacterBottomSheetFragment :
             textViewEpisode.text = model.episode
             textViewCreated.text = model.created
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

@@ -1,8 +1,5 @@
 package com.umutcansahin.feature.episode_detail
 
-import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -10,27 +7,21 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.umutcansahin.common.gone
-import com.umutcansahin.common.viewBinding
 import com.umutcansahin.common.visible
-import com.umutcansahin.feature.R
+import com.umutcansahin.feature.base.BaseFragment
 import com.umutcansahin.feature.databinding.FragmentEpisodeDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class EpisodeDetailFragment : Fragment(R.layout.fragment_episode_detail) {
-    private val binding by viewBinding(FragmentEpisodeDetailBinding::bind)
+class EpisodeDetailFragment :
+    BaseFragment<FragmentEpisodeDetailBinding>(FragmentEpisodeDetailBinding::inflate) {
+
     private val viewModel by viewModels<EpisodeDetailViewModel>()
     private val args: EpisodeDetailFragmentArgs by navArgs()
     private val episodeDetailAdapter = EpisodeDetailAdapter()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        observeData()
-    }
-
-    private fun observeData() {
+    override fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
@@ -96,7 +87,7 @@ class EpisodeDetailFragment : Fragment(R.layout.fragment_episode_detail) {
         }
     }
 
-    private fun initView() {
+    override fun initView() {
         val episodeId = args.episodeId
         viewModel.getEpisodeById(episodeId = episodeId)
 

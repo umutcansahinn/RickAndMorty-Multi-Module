@@ -1,33 +1,26 @@
 package com.umutcansahin.feature.location_detail
 
-import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.umutcansahin.common.viewBinding
-import com.umutcansahin.feature.R
+import com.umutcansahin.feature.base.BaseFragment
 import com.umutcansahin.feature.databinding.FragmentLocationDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LocationDetailFragment : Fragment(R.layout.fragment_location_detail) {
-    private val binding by viewBinding(FragmentLocationDetailBinding::bind)
+class LocationDetailFragment :
+    BaseFragment<FragmentLocationDetailBinding>(FragmentLocationDetailBinding::inflate) {
+
     private val viewModel by viewModels<LocationDetailViewModel>()
     private val args: LocationDetailFragmentArgs by navArgs()
     private val locationDetailAdapter = LocationDetailAdapter()
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        observeData()
-    }
 
-    private fun observeData() {
+    override fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
@@ -93,7 +86,7 @@ class LocationDetailFragment : Fragment(R.layout.fragment_location_detail) {
         }
     }
 
-    private fun initView() {
+    override fun initView() {
         val locationId = args.locationId
         viewModel.getLocationById(locationId = locationId)
 
