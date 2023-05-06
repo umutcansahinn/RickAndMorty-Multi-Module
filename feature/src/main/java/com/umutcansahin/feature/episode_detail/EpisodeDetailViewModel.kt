@@ -44,7 +44,11 @@ class EpisodeDetailViewModel @Inject constructor(
         }
     }
 
-    fun getCharacterByGroupId(characterGroupId: String) {
+
+    fun getCharacterByGroupId(characters: List<String>) {
+        val characterGroupId = characters.map {
+            it.drop(42)
+        }.toString()
         viewModelScope.launch {
             getCharacterByGroupIdUseCase(characterGroupId).collect { resource ->
                 when (resource) {

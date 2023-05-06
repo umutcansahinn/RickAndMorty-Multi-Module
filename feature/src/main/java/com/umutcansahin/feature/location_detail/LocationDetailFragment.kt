@@ -107,9 +107,6 @@ class LocationDetailFragment :
     }
 
     private fun setCharacterGroupId(characters: List<String>) {
-        val characterGroupId = characters.map {
-            it.drop(42)
-        }.toString()
-        viewModel.getCharacterByGroupId(characterGroupId = characterGroupId)
+        viewModel.getCharacterByGroupId(characters = characters)
     }
 }
