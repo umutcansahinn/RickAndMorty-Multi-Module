@@ -6,19 +6,17 @@ import com.umutcansahin.common.orZero
 import com.umutcansahin.data.response.episode.EpisodeInfo
 import com.umutcansahin.data.response.episode.EpisodeResponse
 import com.umutcansahin.data.response.episode.EpisodeResult
-import com.umutcansahin.domain.model.EpisodeDomainModel
-import com.umutcansahin.domain.model.EpisodeInfoDM
-import com.umutcansahin.domain.model.EpisodeResultDM
+import com.umutcansahin.domain.model.*
 
-fun EpisodeResponse.toMap(): EpisodeDomainModel {
+fun EpisodeResponse.toEpisodeDomainModel(): EpisodeDomainModel {
     return EpisodeDomainModel(
-        info = info.toMap(),
-        result = result.orEmptyList().map { it.toMap() }
+        info = info.toEpisodeInfoDomainModel(),
+        result = result.orEmptyList().map { it.toEpisodeResultDomainModel() }
     )
 }
 
-fun EpisodeInfo.toMap(): EpisodeInfoDM {
-    return EpisodeInfoDM(
+fun EpisodeInfo.toEpisodeInfoDomainModel(): EpisodeInfoDomainModel {
+    return EpisodeInfoDomainModel(
         count = count.orZero(),
         next = next.orEmpty(),
         pages = pages.orZero(),
@@ -26,8 +24,8 @@ fun EpisodeInfo.toMap(): EpisodeInfoDM {
     )
 }
 
-fun EpisodeResult.toMap(): EpisodeResultDM {
-    return EpisodeResultDM(
+fun EpisodeResult.toEpisodeResultDomainModel(): EpisodeResultDomainModel {
+    return EpisodeResultDomainModel(
         airDate = airDate.orEmpty(),
         characters = characters.orEmptyList(),
         created = created.orEmpty(),

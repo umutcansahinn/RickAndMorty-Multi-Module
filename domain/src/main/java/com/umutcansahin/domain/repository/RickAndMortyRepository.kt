@@ -6,12 +6,12 @@ import kotlinx.coroutines.flow.Flow
 
 interface RickAndMortyRepository {
 
-    fun getAllCharacter(): Flow<PagingData<CharacterResultDM>>
-    fun getAllEpisode(): Flow<PagingData<EpisodeResultDM>>
-    fun getAllLocation(): Flow<PagingData<LocationResultDM>>
+    fun getAllCharacter(): Flow<PagingData<CharacterResultDomainModel>>
+    fun getAllEpisode(): Flow<PagingData<EpisodeResultDomainModel>>
+    fun getAllLocation(): Flow<PagingData<LocationResultDomainModel>>
 
-    suspend fun getCharacterById(characterId: Int): CharacterResultDM
-    suspend fun getCharacterByGroupId(characterGroupId: String): List<CharacterResultDM>
-    suspend fun getEpisodeById(episodeId: Int): EpisodeResultDM
-    suspend fun getLocationById(locationId: Int): LocationResultDM
+    suspend fun getCharacterById(characterId: Int): CharacterResultDomainModel
+    suspend fun getCharacterByGroupId(characterGroupId: String): List<CharacterResultDomainModel>
+    suspend fun getEpisodeById(episodeId: Int): EpisodeResultDomainModel
+    suspend fun getLocationById(locationId: Int): LocationResultDomainModel
 }

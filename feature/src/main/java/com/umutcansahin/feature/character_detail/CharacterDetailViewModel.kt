@@ -30,7 +30,7 @@ class CharacterDetailViewModel @Inject constructor(
                         _singleCharacter.value = CharacterDetailUiState.Loading
                     }
                     is Resource.Success-> {
-                        _singleCharacter.value = CharacterDetailUiState.Success(it.data.toMap())
+                        _singleCharacter.value = CharacterDetailUiState.Success(it.data.toCharacterDetailResultUiModel())
                     }
                 }
             }

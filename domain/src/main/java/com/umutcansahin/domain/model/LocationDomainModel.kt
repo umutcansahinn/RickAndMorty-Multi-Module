@@ -1,18 +1,18 @@
 package com.umutcansahin.domain.model
 
 data class LocationDomainModel(
-    val info: LocationInfoDM,
-    val result: List<LocationResultDM>
+    val info: LocationInfoDomainModel,
+    val result: List<LocationResultDomainModel>
 )
 
-data class LocationInfoDM(
+data class LocationInfoDomainModel(
     val count: Int,
     val next: String,
     val pages: Int,
     val prev: Any
 )
 
-data class LocationResultDM(
+data class LocationResultDomainModel(
     val created: String,
     val dimension: String,
     val id: Int,

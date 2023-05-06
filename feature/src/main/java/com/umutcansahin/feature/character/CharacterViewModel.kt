@@ -28,7 +28,7 @@ class CharacterViewModel @Inject constructor(
     private fun getAllCharacter() {
         viewModelScope.launch {
             getAllCharacterUseCase().cachedIn(viewModelScope).collect { pagingData ->
-                pagingData.map { it.toMap() }.also {
+                pagingData.map { it.toCharacterResultUiModel() }.also {
                     _allCharacter.value = it
                 }
             }

@@ -27,7 +27,7 @@ class EpisodeViewModel @Inject constructor(
     private fun getAllEpisode() {
         viewModelScope.launch {
             getAllEpisodeUseCase().cachedIn(viewModelScope).collect { pagingData ->
-                pagingData.map { it.toMap() }.also {
+                pagingData.map { it.toEpisodeResultUiModel() }.also {
                     _allEpisode.value = it
                 }
             }

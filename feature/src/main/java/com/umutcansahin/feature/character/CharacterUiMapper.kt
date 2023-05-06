@@ -1,8 +1,8 @@
 package com.umutcansahin.feature.character
 
-import com.umutcansahin.domain.model.CharacterResultDM
+import com.umutcansahin.domain.model.CharacterResultDomainModel
 
-fun CharacterResultDM.toMap(): CharacterResultUiModel {
+fun CharacterResultDomainModel.toCharacterResultUiModel(): CharacterResultUiModel {
     return CharacterResultUiModel(
         id = id,
         image = image,

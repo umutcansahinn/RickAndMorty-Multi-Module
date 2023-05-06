@@ -36,7 +36,8 @@ class EpisodeDetailViewModel @Inject constructor(
                         _singleEpisode.value = EpisodeDetailUiState.Error(it.errorMessage)
                     }
                     is Resource.Success -> {
-                        _singleEpisode.value = EpisodeDetailUiState.Success(it.data.toMap())
+                        _singleEpisode.value =
+                            EpisodeDetailUiState.Success(it.data.toEpisodeDetailResultUiModel())
                     }
                 }
             }
@@ -45,17 +46,17 @@ class EpisodeDetailViewModel @Inject constructor(
 
     fun getCharacterByGroupId(characterGroupId: String) {
         viewModelScope.launch {
-            getCharacterByGroupIdUseCase(characterGroupId).collect {
-                when(it) {
+            getCharacterByGroupIdUseCase(characterGroupId).collect { resource ->
+                when (resource) {
                     is Resource.Loading -> {
                         _groupCharacter.value = CharacterGroupUiState.Loading
                     }
                     is Resource.Error -> {
-                        _groupCharacter.value = CharacterGroupUiState.Error(it.errorMessage)
+                        _groupCharacter.value = CharacterGroupUiState.Error(resource.errorMessage)
                     }
                     is Resource.Success -> {
                         _groupCharacter.value =
-                            CharacterGroupUiState.Success(it.data.map { it.toMap() })
+                            CharacterGroupUiState.Success(resource.data.map { it.toCharacterGroupResultUiModel() })
                     }
                 }
             }

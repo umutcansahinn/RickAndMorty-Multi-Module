@@ -1,7 +1,7 @@
 package com.umutcansahin.domain.use_case
 
 import androidx.paging.PagingData
-import com.umutcansahin.domain.model.CharacterResultDM
+import com.umutcansahin.domain.model.CharacterResultDomainModel
 import com.umutcansahin.domain.repository.RickAndMortyRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -9,7 +9,7 @@ import javax.inject.Inject
 class GetAllCharacterUseCase @Inject constructor(
     private val repository: RickAndMortyRepository
 ) {
-    operator fun invoke(): Flow<PagingData<CharacterResultDM>> {
+    operator fun invoke(): Flow<PagingData<CharacterResultDomainModel>> {
         return repository.getAllCharacter()
     }
 }

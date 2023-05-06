@@ -1,8 +1,8 @@
 package com.umutcansahin.feature.location
 
-import com.umutcansahin.domain.model.LocationResultDM
+import com.umutcansahin.domain.model.LocationResultDomainModel
 
-fun LocationResultDM.toMap(): LocationResultUiModel {
+fun LocationResultDomainModel.toLocationResultUiModel(): LocationResultUiModel {
     return LocationResultUiModel(
         id = id,
         name = name

@@ -6,19 +6,17 @@ import com.umutcansahin.common.orZero
 import com.umutcansahin.data.response.location.LocationInfo
 import com.umutcansahin.data.response.location.LocationResponse
 import com.umutcansahin.data.response.location.LocationResult
-import com.umutcansahin.domain.model.LocationDomainModel
-import com.umutcansahin.domain.model.LocationInfoDM
-import com.umutcansahin.domain.model.LocationResultDM
+import com.umutcansahin.domain.model.*
 
-fun LocationResponse.toMap(): LocationDomainModel {
+fun LocationResponse.toLocationDomainModel(): LocationDomainModel {
     return LocationDomainModel(
-        info = info.toMap(),
-        result = result.orEmptyList().map { it.toMap() }
+        info = info.toLocationInfoDomainModel(),
+        result = result.orEmptyList().map { it.toLocationResultDomainModel() }
     )
 }
 
-fun LocationInfo.toMap(): LocationInfoDM {
-    return LocationInfoDM(
+fun LocationInfo.toLocationInfoDomainModel(): LocationInfoDomainModel {
+    return LocationInfoDomainModel(
         count = count.orZero(),
         next = next.orEmpty(),
         pages = pages.orZero(),
@@ -26,8 +24,8 @@ fun LocationInfo.toMap(): LocationInfoDM {
     )
 }
 
-fun LocationResult.toMap(): LocationResultDM {
-    return LocationResultDM(
+fun LocationResult.toLocationResultDomainModel(): LocationResultDomainModel {
+    return LocationResultDomainModel(
         created = created.orEmpty(),
         dimension = dimension.orEmpty(),
         id = id.orZero(),

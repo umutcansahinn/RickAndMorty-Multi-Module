@@ -6,15 +6,15 @@ import com.umutcansahin.common.orZero
 import com.umutcansahin.data.response.character.*
 import com.umutcansahin.domain.model.*
 
-fun CharacterResponse.toMap(): CharacterDomainModel {
+fun CharacterResponse.toCharacterDomainModel(): CharacterDomainModel {
     return CharacterDomainModel(
-        info = info.toMap(),
-        result = result.orEmptyList().map { it.toMap() }
+        info = info.toCharacterInfoDomainModel(),
+        result = result.orEmptyList().map { it.toCharacterResultDomainModel() }
     )
 }
 
-fun CharacterInfo.toMap(): CharacterInfoDM {
-    return CharacterInfoDM(
+fun CharacterInfo.toCharacterInfoDomainModel(): CharacterInfoDomainModel {
+    return CharacterInfoDomainModel(
         count = count.orZero(),
         next = next.orEmpty(),
         pages = pages.orZero(),
@@ -22,16 +22,16 @@ fun CharacterInfo.toMap(): CharacterInfoDM {
     )
 }
 
-fun CharacterResult.toMap(): CharacterResultDM {
-    return CharacterResultDM(
+fun CharacterResult.toCharacterResultDomainModel(): CharacterResultDomainModel {
+    return CharacterResultDomainModel(
         created = created.orEmpty(),
         episode = episode.orEmptyList(),
         gender = gender.orEmpty(),
         id = id.orZero(),
         image = image.orEmpty(),
-        location = location.toMap(),
+        location = location.toCharacterLocationDomainModel(),
         name = name.orEmpty(),
-        origin = origin.toMap(),
+        origin = origin.toCharacterOriginDomainModel(),
         species = species.orEmpty(),
         status = status.orEmpty(),
         type = type.orEmpty(),
@@ -39,15 +39,15 @@ fun CharacterResult.toMap(): CharacterResultDM {
     )
 }
 
-fun CharacterLocation.toMap(): CharacterLocationDM {
-    return CharacterLocationDM(
+fun CharacterLocation.toCharacterLocationDomainModel(): CharacterLocationDomainModel {
+    return CharacterLocationDomainModel(
         name = name.orEmpty(),
         url = url.orEmpty()
     )
 }
 
-fun CharacterOrigin.toMap(): CharacterOriginDM {
-    return CharacterOriginDM(
+fun CharacterOrigin.toCharacterOriginDomainModel(): CharacterOriginDomainModel {
+    return CharacterOriginDomainModel(
         name = name.orEmpty(),
         url = url.orEmpty()
     )

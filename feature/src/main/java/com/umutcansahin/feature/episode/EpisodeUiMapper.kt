@@ -1,8 +1,8 @@
 package com.umutcansahin.feature.episode
 
-import com.umutcansahin.domain.model.EpisodeResultDM
+import com.umutcansahin.domain.model.EpisodeResultDomainModel
 
-fun EpisodeResultDM.toMap(): EpisodeResultUiModel {
+fun EpisodeResultDomainModel.toEpisodeResultUiModel(): EpisodeResultUiModel {
     return EpisodeResultUiModel(
         episode = episode,
         id = id,

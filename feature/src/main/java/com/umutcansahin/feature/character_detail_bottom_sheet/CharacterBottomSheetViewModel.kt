@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CharacterBottomSheetViewModel @Inject constructor(
     private val getEpisodeByIdUseCase: GetEpisodeByIdUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _singleEpisode =
         MutableStateFlow<CharacterBottomSheetUiState>(CharacterBottomSheetUiState.Loading)
@@ -22,15 +22,16 @@ class CharacterBottomSheetViewModel @Inject constructor(
     fun getEpisodeById(episodeId: Int) {
         viewModelScope.launch {
             getEpisodeByIdUseCase(episodeId).collect {
-                when(it) {
-                    is Resource.Loading-> {
+                when (it) {
+                    is Resource.Loading -> {
                         _singleEpisode.value = CharacterBottomSheetUiState.Loading
                     }
-                    is Resource.Error-> {
+                    is Resource.Error -> {
                         _singleEpisode.value = CharacterBottomSheetUiState.Error(it.errorMessage)
                     }
-                    is Resource.Success-> {
-                        _singleEpisode.value = CharacterBottomSheetUiState.Success(it.data.toMap())
+                    is Resource.Success -> {
+                        _singleEpisode.value =
+                            CharacterBottomSheetUiState.Success(it.data.toCharacterBottomSheetUiModel())
                     }
                 }
             }

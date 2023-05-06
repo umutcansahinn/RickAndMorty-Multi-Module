@@ -28,7 +28,7 @@ class LocationViewModel @Inject constructor(
     private fun getAllLocation() {
         viewModelScope.launch {
             getAllLocationUseCase().cachedIn(viewModelScope).collect { pagingData ->
-                pagingData.map { it.toMap() }.also {
+                pagingData.map { it.toLocationResultUiModel() }.also {
                     _allLocation.value = it
                 }
             }

@@ -27,16 +27,17 @@ class LocationDetailViewModel @Inject constructor(
 
     fun getLocationById(locationId: Int) {
         viewModelScope.launch {
-            getLocationByIdUseCase(locationId).collect {
-                when(it) {
-                    is Resource.Loading-> {
+            getLocationByIdUseCase(locationId).collect {resource->
+                when (resource) {
+                    is Resource.Loading -> {
                         _singleLocation.value = LocationDetailUiState.Loading
                     }
-                    is Resource.Error-> {
-                        _singleLocation.value = LocationDetailUiState.Error(it.errorMessage)
+                    is Resource.Error -> {
+                        _singleLocation.value = LocationDetailUiState.Error(resource.errorMessage)
                     }
-                    is Resource.Success-> {
-                        _singleLocation.value = LocationDetailUiState.Success(it.data.toMap())
+                    is Resource.Success -> {
+                        _singleLocation.value =
+                            LocationDetailUiState.Success(resource.data.toLocationDetailResultUiModel())
                     }
                 }
             }
@@ -45,17 +46,17 @@ class LocationDetailViewModel @Inject constructor(
 
     fun getCharacterByGroupId(characterGroupId: String) {
         viewModelScope.launch {
-            getCharacterByGroupIdUseCase(characterGroupId).collect {
-                when(it) {
+            getCharacterByGroupIdUseCase(characterGroupId).collect { resource ->
+                when (resource) {
                     is Resource.Loading -> {
                         _groupCharacter.value = CharacterGroupUiState.Loading
                     }
                     is Resource.Error -> {
-                        _groupCharacter.value = CharacterGroupUiState.Error(it.errorMessage)
+                        _groupCharacter.value = CharacterGroupUiState.Error(resource.errorMessage)
                     }
                     is Resource.Success -> {
                         _groupCharacter.value =
-                            CharacterGroupUiState.Success(it.data.map { it.toMap() })
+                            CharacterGroupUiState.Success(resource.data.map { it.toCharacterGroupResultUiModel() })
                     }
                 }
             }

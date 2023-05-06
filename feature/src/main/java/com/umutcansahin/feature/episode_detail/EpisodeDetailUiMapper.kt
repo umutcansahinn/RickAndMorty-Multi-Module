@@ -1,9 +1,9 @@
 package com.umutcansahin.feature.episode_detail
 
-import com.umutcansahin.domain.model.CharacterResultDM
-import com.umutcansahin.domain.model.EpisodeResultDM
+import com.umutcansahin.domain.model.CharacterResultDomainModel
+import com.umutcansahin.domain.model.EpisodeResultDomainModel
 
-fun EpisodeResultDM.toMap(): EpisodeDetailResultUiModel {
+fun EpisodeResultDomainModel.toEpisodeDetailResultUiModel(): EpisodeDetailResultUiModel {
     return EpisodeDetailResultUiModel(
         airDate = airDate,
         characters = characters,
@@ -15,7 +15,7 @@ fun EpisodeResultDM.toMap(): EpisodeDetailResultUiModel {
     )
 }
 
-fun CharacterResultDM.toMap(): CharacterGroupResultUiModel {
+fun CharacterResultDomainModel.toCharacterGroupResultUiModel(): CharacterGroupResultUiModel {
     return CharacterGroupResultUiModel(
         image = image
     )

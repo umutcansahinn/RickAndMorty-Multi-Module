@@ -1,22 +1,22 @@
 package com.umutcansahin.feature.character_detail
 
-import com.umutcansahin.domain.model.CharacterOriginDM
-import com.umutcansahin.domain.model.CharacterResultDM
+import com.umutcansahin.domain.model.CharacterOriginDomainModel
+import com.umutcansahin.domain.model.CharacterResultDomainModel
 
-fun CharacterResultDM.toMap(): CharacterDetailResultUiModel {
+fun CharacterResultDomainModel.toCharacterDetailResultUiModel(): CharacterDetailResultUiModel {
     return CharacterDetailResultUiModel(
         episode = episode,
         gender = gender,
         id = id,
         image = image,
         name = name,
-        origin = origin.toMap(),
+        origin = origin.toCharacterDetailOriginUiModel(),
         species = species,
         status = status
     )
 }
 
-fun CharacterOriginDM.toMap(): CharacterDetailOriginUiModel {
+fun CharacterOriginDomainModel.toCharacterDetailOriginUiModel(): CharacterDetailOriginUiModel {
     return CharacterDetailOriginUiModel(
         name = name,
         url = url

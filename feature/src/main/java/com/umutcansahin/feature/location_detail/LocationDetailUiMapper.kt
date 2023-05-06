@@ -1,9 +1,9 @@
 package com.umutcansahin.feature.location_detail
 
-import com.umutcansahin.domain.model.CharacterResultDM
-import com.umutcansahin.domain.model.LocationResultDM
+import com.umutcansahin.domain.model.CharacterResultDomainModel
+import com.umutcansahin.domain.model.LocationResultDomainModel
 
-fun LocationResultDM.toMap(): LocationDetailResultUiModel {
+fun LocationResultDomainModel.toLocationDetailResultUiModel(): LocationDetailResultUiModel {
     return LocationDetailResultUiModel(
         dimension = dimension,
         id = id,
@@ -14,7 +14,7 @@ fun LocationResultDM.toMap(): LocationDetailResultUiModel {
     )
 }
 
-fun CharacterResultDM.toMap(): CharacterGroupResultUiModel {
+fun CharacterResultDomainModel.toCharacterGroupResultUiModel(): CharacterGroupResultUiModel {
     return CharacterGroupResultUiModel(
         image = image
     )
