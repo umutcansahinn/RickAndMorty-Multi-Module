@@ -2,12 +2,12 @@ package com.umutcansahin.feature.character
 
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.umutcansahin.feature.base.BaseFragment
 import com.umutcansahin.feature.databinding.FragmentCharacterBinding
 import com.umutcansahin.feature.util.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CharacterFragment :
@@ -15,6 +15,9 @@ class CharacterFragment :
 
     private val viewModel by viewModels<CharacterViewModel>()
     private val characterAdapter = CharacterAdapter(::itemSetClick)
+
+    @Inject
+    lateinit var characterNavigator: CharacterNavigator
 
     override fun initView() {
         binding.recyclerView.adapter = characterAdapter
@@ -36,10 +39,8 @@ class CharacterFragment :
     }
 
     private fun itemSetClick(characterId: Int) {
-        findNavController().navigate(
-            CharacterFragmentDirections.actionCharacterFragmentToCharacterDetailFragment(
-                characterId = characterId
-            )
+        characterNavigator.navigate(
+            characterId = characterId
         )
     }
 }

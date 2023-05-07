@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.umutcansahin.common.gone
 import com.umutcansahin.common.visible
 import com.umutcansahin.feature.databinding.FragmentCharacterBottomSheetBinding
 import com.umutcansahin.feature.util.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CharacterBottomSheetFragment : BottomSheetDialogFragment() {
@@ -20,7 +20,9 @@ class CharacterBottomSheetFragment : BottomSheetDialogFragment() {
     val binding get() = _binding!!
 
     private val viewModel by viewModels<CharacterBottomSheetViewModel>()
-    private val args: CharacterBottomSheetFragmentArgs by navArgs()
+
+    @Inject
+    lateinit var characterBottomSheetNavigator: CharacterBottomSheetNavigator
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,7 +71,7 @@ class CharacterBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun initView() {
-        val episodeId = args.episodeId
+        val episodeId = characterBottomSheetNavigator.getArgs().episodeId
         viewModel.getEpisodeById(episodeId = episodeId)
     }
 

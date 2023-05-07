@@ -41,7 +41,6 @@ dependencies {
     implementation(project(Modules.common))
     implementation(project(Modules.data))
     implementation(project(Modules.domain))
-    implementation(project(Modules.navigation))
 
     implementation(AndroidLibraries.androidxCore)
     implementation(AndroidLibraries.androidxAppCompat)
