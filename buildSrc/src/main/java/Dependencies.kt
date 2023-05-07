@@ -13,7 +13,6 @@ object Modules {
     const val data = ":data"
     const val domain = ":domain"
     const val feature = ":feature"
-    const val navigation = ":navigation"
 }
 
 object BuildPlugins {

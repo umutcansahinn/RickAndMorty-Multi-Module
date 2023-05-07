@@ -2,17 +2,20 @@ package com.umutcansahin.feature.location
 
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.umutcansahin.feature.base.BaseFragment
 import com.umutcansahin.feature.databinding.FragmentLocationBinding
 import com.umutcansahin.feature.util.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LocationFragment : BaseFragment<FragmentLocationBinding>(FragmentLocationBinding::inflate) {
     private val viewModel by viewModels<LocationViewModel>()
     private val locationAdapter = LocationAdapter(::itemSetClick)
+
+    @Inject
+    lateinit var locationNavigator: LocationNavigator
 
     override fun observeData() {
         this.collectFlow(viewModel.allLocation) {
@@ -33,8 +36,6 @@ class LocationFragment : BaseFragment<FragmentLocationBinding>(FragmentLocationB
     }
 
     private fun itemSetClick(locationId: Int) {
-        findNavController().navigate(
-            LocationFragmentDirections.actionLocationFragmentToLocationDetailFragment(locationId = locationId)
-        )
+        locationNavigator.navigate(locationId)
     }
 }

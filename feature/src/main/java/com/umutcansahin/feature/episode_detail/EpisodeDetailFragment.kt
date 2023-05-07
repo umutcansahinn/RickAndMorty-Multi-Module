@@ -2,21 +2,23 @@ package com.umutcansahin.feature.episode_detail
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.umutcansahin.common.gone
 import com.umutcansahin.common.visible
 import com.umutcansahin.feature.base.BaseFragment
 import com.umutcansahin.feature.databinding.FragmentEpisodeDetailBinding
 import com.umutcansahin.feature.util.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class EpisodeDetailFragment :
     BaseFragment<FragmentEpisodeDetailBinding>(FragmentEpisodeDetailBinding::inflate) {
 
     private val viewModel by viewModels<EpisodeDetailViewModel>()
-    private val args: EpisodeDetailFragmentArgs by navArgs()
     private val episodeDetailAdapter = EpisodeDetailAdapter()
+
+    @Inject
+    lateinit var episodeDetailNavigator: EpisodeDetailNavigator
 
     override fun observeData() {
         this.collectFlow(viewModel.singleEpisode) {
@@ -77,7 +79,7 @@ class EpisodeDetailFragment :
     }
 
     override fun initView() {
-        val episodeId = args.episodeId
+        val episodeId = episodeDetailNavigator.getArgs().episodeId
         viewModel.getEpisodeById(episodeId = episodeId)
 
         binding.imageBackButton.setOnClickListener {

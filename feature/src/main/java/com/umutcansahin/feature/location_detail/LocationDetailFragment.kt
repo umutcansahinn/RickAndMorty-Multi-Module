@@ -3,19 +3,21 @@ package com.umutcansahin.feature.location_detail
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.umutcansahin.feature.base.BaseFragment
 import com.umutcansahin.feature.databinding.FragmentLocationDetailBinding
 import com.umutcansahin.feature.util.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LocationDetailFragment :
     BaseFragment<FragmentLocationDetailBinding>(FragmentLocationDetailBinding::inflate) {
 
     private val viewModel by viewModels<LocationDetailViewModel>()
-    private val args: LocationDetailFragmentArgs by navArgs()
     private val locationDetailAdapter = LocationDetailAdapter()
+
+    @Inject
+    lateinit var locationDetailNavigator: LocationDetailNavigator
 
     override fun observeData() {
         this.collectFlow(viewModel.singleLocation) {
@@ -76,7 +78,7 @@ class LocationDetailFragment :
     }
 
     override fun initView() {
-        val locationId = args.locationId
+        val locationId = locationDetailNavigator.getArgs().locationId
         viewModel.getLocationById(locationId = locationId)
 
         binding.imageBackButton.setOnClickListener {
